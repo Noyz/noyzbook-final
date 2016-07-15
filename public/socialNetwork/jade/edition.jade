@@ -1,0 +1,9 @@
+extends layoutHeader
+block content
+  section
+    div.redaction
+        p(style="text-align:center;font-weight:bold;font-size:16px;color:green") Sur cette page vous pouvez envoyer un message sur votre mur visible par tous vos amis !
+        form#editor
+          textarea(name="contenuArticle" placeholder="Ecrivez votre message !")
+            p   
+          button.btn.btn-success(type="submit" value="Envoyer" name="submitMessage" style="margin-top:10px;text-align:center") Publier sur mon mur

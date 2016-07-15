@@ -1,0 +1,13 @@
+extends layoutHeader
+block content
+    div.contactPM
+        select.form-control
+        ul.containerContact
+    div.container
+        div.containerPM
+            p.redactionPM Votre historique de conversation avec : 
+            ul.containerPrivateMessage
+        div.editorPM
+        form.privateMessagesPageEditorForm
+          textarea
+          button(type="submit" class="btn btn-success sendPrivateMessageOwnPage") Envoyer message

@@ -1,0 +1,64 @@
+extends layoutHeader.jade
+block content
+  section
+    .container
+        .row
+          .col-lg-8.col-md-6.col-xs-12
+            #updateProfil
+              form(method='POST', action='/updateProfil', id="updateInformationForm", novalidate='')
+                fieldset 
+                  legend Mettre à jour votre profil
+                  .form-group
+                    label(for='nameUpdate') Votre nom
+                    input.form-control(type='text', name='nameUpdate', placeholder='Ex : Dupont')
+                  .form-group
+                    label(for='prenomUpdate') Votre prénom
+                    input.form-control(type='text', name='prenomUpdate', placeholder='Ex : Jean')
+                  .form-group
+                    label(for='mailUpdate') Votre adresse mail
+                    input.form-control(type='mail', name='mailUpdate', placeholder='jean.dupont@gmail.com')
+                  .form-group
+                    label(for='ageUpdate') Votre âge
+                    input.form-control(type='number',name="ageUpdate",  placeholder='25')
+                  .form-group
+                    label(for='sexe') Votre sexe
+                    select.gender.form-control(required)
+                      option(selected) Homme
+                      option Femme
+                  .form-group
+                    label(for='adressePostal') Votre adresse postal
+                    input.form-control(type='text',name="adressePostal",  placeholder='50 Avenue Montaigne 75008 Paris')
+                  button.btn.btn-success(type='submit',id="updateInfoBtn" ,value="Mettre à jour") Mettre à jour vos informations
+                  p.errorUpdate Vos informations ont biens étés enregistrés ! 
+            #updateProfilPicture
+              fieldset 
+                legend Mettre à jour votre profil
+                img.profilImg(src="img/anonymous.jpg")
+                form.form-group.formImgProfil(action="/upload" method="POST"  enctype="multipart/form-data")
+                    input(type="file", name="image", id="urlImg")
+                    button.btn.btn-success(type="submit", name="submitImg", id="submitImg" value="Mettre à jour image profil",style="margin-top:10px") Mettre à jour image profil
+            #updatePassword
+              fieldset 
+                legend Mettre à jour votre mot de passe
+                form.form-group(action="/passwordChange", id="updatePasswordForm", method="POST")
+                  .form-group
+                    label(for='currentPassword') Votre mot de passe actuel
+                    input.form-control(type='password',name="currentPassword", placeholder='')
+                    p.errorField.errorFieldCurrentPassword 
+                  .form-group
+                    label(for='newPassword') Changer votre mot de passe
+                    input.form-control(type='password',name="newPassword", placeholder='')
+                    p.errorField.errorFieldNewPassword 
+                  .form-group
+                    label(for='confirmPassword') Confirmer mot de passe
+                    input.form-control(type='password',name="confirmPassword", placeholder='')
+                    p.errorField.errorFieldConfirmPassword   
+                    button.btn.btn-success(type="submit", name="checkedPassword" value="checked password",style="margin-top:10px") Mettre à jour votre mot de passe
+                    p.errorUpdatePassword Votre mot de passe à bien été enregistrés !        
+block footer
+  footer
+    .row
+      .col-lg-12
+        p Copyright © noyzbook.herokuapp.com 2016
+  script(src='../Asset/bootstrap.min.js')               
+                     

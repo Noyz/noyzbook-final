@@ -1,0 +1,10 @@
+extends layoutHeader
+block content
+  section
+    div#contenuFriendWall
+      div.redactionFriendWall
+          P Publier un article sur le mur de votre ami : 
+          form#editorFriendWall
+            textarea(name="contenuArticle" placeholder="Ecrivez votre message !")
+              p   
+            btn(type="submit" class="publierOnFriendWall btn btn-success" value="Envoyer" name="submitMessage") Publier sur son mur

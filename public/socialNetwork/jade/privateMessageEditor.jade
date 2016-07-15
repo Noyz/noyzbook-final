@@ -1,0 +1,10 @@
+extends layoutHeader
+block content
+  section
+    div#contenu
+      div.redaction
+          P.destinataire Envoyer un message privée à : 
+          form#editorPrivateMessage
+            textarea(name="contenuPrivateMessage" placeholder="Ecrivez votre message !")
+              p   
+            button(type="submit" class="btn btn-success btnPrivateMessage" value="Envoyer" name="submitPrivateMessage") Envoyer message privée

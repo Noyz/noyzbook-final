@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Le Réseau social Noyzbook</title>
+    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/heroic-features.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/newstylesheet.css">
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="../Asset/jquery.js"></script>
+    <script src="../Asset/accueil.js"> </script>
+    <script src="../Asset/profil.js"></script>
+    <script src="../Asset/notification.js"></script>
+    <script src="../Asset/listUsers.js"></script>
+    <script src="../Asset/listFriends.js"></script>
+    <script src="../Asset/wallFriend.js"></script>
+    <script src="../Asset/privateMessage.js"></script>
+    <script src="../Asset/edition.js"></script>
+    <script type="text/javascript" src="../Asset/newscript.js"></script>
+    <script src="../Asset/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Se déconnecter de :</a>
+          </div>
+          <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="accueil" class="accueilShortcut">Accueil</a></li>
+              <li><a href="myprofil" class="profilShortcut">Mon profil</a></li>
+              <li><a href="notifications" class="notificationsShortcut">Notification</a></li>
+              <li><a href="listUsers" class="listUsersShortcut">Ajouter un utilisateur</a></li>
+              <li><a href="listFriends" class="listFriendsShortcut">Mes amis  </a></li>
+              <li><a href="privateMessage" class="privateMessagesShortcut">Message privée</a></li>
+              <li><a href="tchat" class="tchatShortcut">Tchat </a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-xs-12">
+            <div id="updateProfil">
+              <form method="POST" action="/updateProfil" id="updateInformationForm" novalidate="">
+                <fieldset> 
+                  <legend>Mettre à jour votre profil</legend>
+                  <div class="form-group">
+                    <label for="nameUpdate">Votre nom</label>
+                    <input type="text" name="nameUpdate" placeholder="Ex : Dupont" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="prenomUpdate">Votre prénom</label>
+                    <input type="text" name="prenomUpdate" placeholder="Ex : Jean" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="mailUpdate">Votre adresse mail</label>
+                    <input type="mail" name="mailUpdate" placeholder="jean.dupont@gmail.com" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="ageUpdate">Votre âge</label>
+                    <input type="number" name="ageUpdate" placeholder="25" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="sexe">Votre sexe</label>
+                    <select required class="gender form-control">
+                      <option selected>Homme</option>
+                      <option>Femme</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="adressePostal">Votre adresse postal</label>
+                    <input type="text" name="adressePostal" placeholder="50 Avenue Montaigne 75008 Paris" class="form-control">
+                  </div>
+                  <button type="submit" id="updateInfoBtn" value="Mettre à jour" class="btn btn-success">Mettre à jour vos informations</button>
+                  <p class="errorUpdate">Vos informations ont biens étés enregistrés ! </p>
+                </fieldset>
+              </form>
+            </div>
+            <div id="updateProfilPicture">
+              <fieldset> 
+                <legend>Mettre à jour votre profil</legend><img src="img/anonymous.jpg" class="profilImg">
+                <form action="/upload" method="POST" enctype="multipart/form-data" class="form-group formImgProfil">
+                  <input type="file" name="image" id="urlImg">
+                  <button type="submit" name="submitImg" id="submitImg" value="Mettre à jour image profil" style="margin-top:10px" class="btn btn-success">Mettre à jour image profil</button>
+                </form>
+              </fieldset>
+            </div>
+            <div id="updatePassword">
+              <fieldset> 
+                <legend>Mettre à jour votre mot de passe</legend>
+                <form action="/passwordChange" id="updatePasswordForm" method="POST" class="form-group">
+                  <div class="form-group">
+                    <label for="currentPassword">Votre mot de passe actuel</label>
+                    <input type="password" name="currentPassword" placeholder="" class="form-control">
+                    <p class="errorField errorFieldCurrentPassword"> </p>
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">Changer votre mot de passe</label>
+                    <input type="password" name="newPassword" placeholder="" class="form-control">
+                    <p class="errorField errorFieldNewPassword"> </p>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirmer mot de passe</label>
+                    <input type="password" name="confirmPassword" placeholder="" class="form-control">
+                    <p class="errorField errorFieldConfirmPassword">  </p>
+                    <button type="submit" name="checkedPassword" value="checked password" style="margin-top:10px" class="btn btn-success">Mettre à jour votre mot de passe</button>
+                    <p class="errorUpdatePassword">Votre mot de passe à bien été enregistrés !        </p>
+                  </div>
+                </form>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © noyzbook.herokuapp.com 2016</p>
+        </div>
+      </div>
+    </footer>
+    <script src="../Asset/bootstrap.min.js">              </script>
+  </body>
+</html>

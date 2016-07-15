@@ -1,0 +1,80 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Heroic Features - Start Bootstrap Template
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/heroic-features.css', rel='stylesheet')
+    link(rel='stylesheet', href='../../css/newstylesheet.css')
+    script(src='../Asset/jquery.js')
+    script(type='text/javascript' src="../Asset/newscript.js")  
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar(href='#') NoyzBook
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.subscriptionMain S'inscrire
+            li
+              a.loginMain Se Connecter
+            li
+              a(href='#') Anonyme
+    .container
+      header.jumbotron.hero-spacer
+        h1 Bienvenue sur le réseau social de Julian NOYON : Noyzbook
+        p
+          | Vous pouvez vous inscrire ou vous connecter à un compte déjà existant. La connexion anonyme est actuellement indisponible.
+        p
+          a.btn.btn-primary.btn-large Connexion anonyme
+      hr
+      .row
+        .col-lg-12
+          h3(style="text-align:center") Cliquer sur s'inscrire ou se connecter
+      .row.text-center
+        .col-md-6.col-sm-6.hero-feature
+          #subscription
+            form#formSub(method='POST', action='/Sub', novalidate='')
+              legend Formulaire d'inscription
+              .form-group
+                label(for='usernameSub') Votre username
+                input.form-control(type='text', name='usernameSub', placeholder='Ex : Dupont')
+              .form-group
+                label(for='mailSub') Votre e-mail
+                input#mailSub.form-control(type='mail', name='mailSub', placeholder='Azor-ahai@gmail.com')
+              .form-group
+                label(for='passwordSub') Votre mot de passe
+                input#passwordSub.form-control(type='password', name='passwordSub', placeholder='')
+              .form-group
+                label(for='passwordSubConfirm') Confirmer mot de passe
+                input#passwordSubConfirm.form-control(type='password', placeholder='')
+              p.errorSub
+              button.btn.btn-default(type='submit', value="s'inscrire") S'inscrire
+        .col-md-6.col-sm-6.hero-feature
+          #login
+            form#formLog(method='POST', action='/connect', novalidate='')
+              legend Formulaire de connexion
+              .form-group
+                label(for='usernameLog') Votre username
+                input.form-control(type='text', name='usernameLog', placeholder='Ex : Dupont')
+              .form-group
+                label(for='passwordLog') Votre mot de passe
+                input#passwordLog.form-control(type='password', name='passwordLog', placeholder='')
+              p.errorLog
+              button.btn.btn-default(type='submit') Se connecter
+      hr
+      footer
+        .row
+          .col-lg-12
+            p Copyright © noyzbook.herokuapp.com 2016
+    script(src='../Asset/bootstrap.min.js')

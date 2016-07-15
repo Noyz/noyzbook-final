@@ -1,0 +1,315 @@
+@import 'variables';
+ul{
+	list-style:none;
+}
+.clearfix{
+	clear:both;
+}
+body{
+	background-color:#f1f1f1
+}
+/****** MAIN PAGE ********/
+.subscriptionMain:hover{
+	cursor:pointer;
+}
+#subscription{
+	border:1px solid #CCC;
+	padding:15px;
+	display:none;
+	height:427px;
+}
+.loginMain:hover{
+	cursor:pointer;
+}
+#login{
+	border:1px solid #CCC;
+	padding:15px;
+	display:none;
+	height:427px;
+}
+
+
+
+/**** PAGE PROFIL ****/
+.imgProfil{
+	height:auto;
+	width:300px;
+	border:1px solid black;
+	margin-left:15px;
+	display:none;
+}
+
+.edit{
+	text-align:center;
+}
+
+.messageContainer{
+	li{
+		display:block;
+		margin-bottom:10px;
+	}
+}
+
+.articleUser{
+	@include widthContent;
+	width:75%;
+}
+
+#updateProfil{
+	border:1px solid #ccc;
+	padding: 10px;
+
+}
+
+#updatePassword{
+	margin-top:20px;
+	border:1px solid #ccc;
+	padding: 10px;
+
+}
+
+#updateProfilPicture{
+	margin-top:20px;
+	border:1px solid #ccc;
+	padding: 10px;
+	.profilImg{
+		height:100px;
+		width:100px;
+		margin:5px;
+		border:1px solid black;
+	}
+}
+
+.errorUpdate{
+	display:none;
+	color:green;
+	float:right;
+}
+
+.errorUpdatePassword{
+	display:none;
+	color:green;
+	float:right;
+}
+
+.errorField{
+	color:red;
+}
+
+/**** PAGE ACCUEIL ****/
+.senderImg{
+	height:70px;
+	width:70px;
+	border-radius:100%;
+	float:left;
+	margin-right:5px;
+}
+.senderIdentity{
+	line-height:40px
+}
+
+.articleModification{
+	float:right;
+	margin-right:10px;
+}
+.glyphicon:hover{
+	cursor:pointer;
+}
+
+.editThisMessage{
+	margin:0 auto;
+	// display:none;
+	// border:1px solid black;
+	margin-top:10px;
+	height:0;
+	width:50%;
+	// padding:15px;
+	overflow:hidden;
+	textarea{
+		width:100%;
+	}
+	.statusUpdate{
+		color:green;
+	}
+}
+	.deleteThisMessage{
+		float:right;
+	}
+
+	.deleteThisMessage{
+		float:right;
+		display:none;
+		margin-right:10px;
+	}
+
+	.acceptDelete:hover{
+		cursor:pointer;
+
+	}
+	.cancelDelete:hover{
+		cursor:pointer;
+	}
+
+/**** PAGE EDITION ****/
+.redaction{
+	width:80%;
+	margin:0 auto;
+}
+
+/**** PAGE notifications ****/
+.notifications{
+	width: 15%;
+    margin-left: 10px;
+}
+
+.notificationContainer{
+	li{
+		margin-bottom:10px;
+	}
+}
+
+.notificationUser{
+	@include widthContent();
+	text-align:center;
+	.agreeFriend{
+		margin-right:6px;
+	}
+}
+
+
+
+
+
+
+/**** PAGE ListUsers ****/
+
+.contenuListUsers {
+	@include widthContent;
+	box-shadow:none;
+	text-align:center;
+	background-color:#f1f1f1;
+	li{
+		margin-bottom: 3%; 
+		p:hover{
+			cursor:pointer;
+		}
+	}
+	.nameUser{
+		display:inline-block;
+		margin-right:30px;
+	}
+
+	.contenuUser{
+		width:40%;
+		margin:0 auto;
+		@include widthContent;
+		background-color:white;
+	}
+
+	.pictureUser{
+		display:inline;
+		margin-right:10px;
+		
+		img{
+			height:100px;
+			width:100px;
+			border-radius:5px;
+		}
+	}
+	.addUser{
+		margin:10px;
+	}
+}
+
+/**** PAGE ListFriends ****/
+.selectContact{
+	width: 15%;
+    margin-left: 10px;
+}
+
+.contenuListFriends{
+	.nameFriend{
+		text-align:center;
+		font-size:21px;
+		color:green;
+	}
+	.pictureFriend{
+		text-align:center;
+	}
+	.contenuFriend{
+		@include widthContent;
+		margin-bottom:15px;
+	}
+	.updateFriend{
+		width: 40%;
+    	margin: 0 auto
+	}
+	.accessWallFriend{
+		float:left;
+		margin-bottom:10px;
+	}
+	.writingWallFriend{
+		float: right;
+		margin-bottom:10px;
+	}
+	.privateMessageFriend{
+		float:left;
+	}
+	.chatFriend{
+		float:right;
+	}
+	.btn-danger{
+		float:right;
+		margin-top:10px;
+	}
+}
+
+/*****Page Edition Friend wall *****/
+.publierOnFriendWall{
+	margin-top:15px;
+}
+.redactionFriendWall{
+	text-align:center;
+}
+#contenuFriendWall{
+	@include widthContent;
+}
+
+/*****Page Friend wall *****/
+.articleFriend{
+	margin-bottom:10px;
+}
+
+/*****Page Private Message  editor*****/
+.btnPrivateMessage{
+	margin-top:10px;
+}
+
+/*****Page Private Message *****/
+.containerPM{
+	@include widthContent;
+	margin-bottom:15px;
+}
+
+.privateMessagesPageEditorForm{
+	width: 80%;
+    margin: 0 auto;
+}
+.contactPM{
+	width:15%;
+	margin:20px;
+}
+.sendPrivateMessageOwnPage{
+	margin-top:10px;
+}
+.containerPrivateMessage{
+	li{
+		margin-bottom:10px;
+	}
+}
+.goRight{
+	text-align:right;
+}
+
+
+  
