@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Le Réseau social</title>
-    <script src="https://cdn.socket.io/socket.io-1.0.0.js"> </script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/stylesheet.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"> </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Le Réseau social Noyzbook</title>
+    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/heroic-features.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/newstylesheet.css">
+    <script src="../Asset/jquery.js"></script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="../Asset/accueil.js"> </script>
     <script src="../Asset/profil.js"></script>
     <script src="../Asset/notification.js"></script>
     <script src="../Asset/listUsers.js"></script>
     <script src="../Asset/listFriends.js"></script>
     <script src="../Asset/wallFriend.js"></script>
     <script src="../Asset/privateMessage.js"></script>
-    <script src="../Asset/script.js"></script>
+    <script src="../Asset/edition.js"></script>
+    <script src="../Asset/tchat.js"></script>
+    <script src="../Asset/administrateur.js"></script>
+    <script type="text/javascript" src="../Asset/newscript.js"></script>
+    <script src="../Asset/bootstrap.min.js"></script>
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid"></div>
+    <div class="header">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
-          <p class="navbar-text navbar-left"><strong>NoyzBook de : </strong><a href="/" title="Page d'Accueil" class="navbar-link">Se déconnecter</a></p>
+          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Se déconnecter de :</a>
         </div>
-        <div id="actionBar">
-          <p style="margin:0;">Vous êtes sur : </p>
-        </div>
-        <div id="userbar">
-          <p> <a href="myprofil">Mon profil</a></p>
-          <p class="notification"><a href="notifications">Notification</a></p>
-          <p> <a href="listUsers">Ajouter utilisateurs</a></p>
-          <p><a href="listFriends">Liste d'amis</a></p>
-          <p> <a href="privateMessage">Message privée</a></p>
-          <p> <a href="tchat">Tchat</a>
-          </p>
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="accueil" class="accueilShortcut">Accueil</a></li>
+            <li><a href="myprofil" class="profilShortcut">Mon profil</a></li>
+            <li><a href="notifications" class="notificationsShortcut">Notification</a></li>
+            <li><a href="listUsers" class="listUsersShortcut">Ajouter un utilisateur</a></li>
+            <li><a href="listFriends" class="listFriendsShortcut">Mes amis  </a></li>
+            <li><a href="privateMessage" class="privateMessagesShortcut">Message privée</a></li>
+            <li><a href="tchat" class="tchatShortcut">Tchat </a></li>
+          </ul>
         </div>
       </nav>
-    </header>
-    <div class="container">
-      <p>Liste de vos amis connectés sur le chat, cliquez sur leurs noms pour envoyer une invitation et démarrer un chat.</p>
+    </div>
+    <div class="containerChat">
+      <div class="tchat">Liste de vos amis connectés sur le chat, cliquez sur leurs noms pour envoyer une invitation et démarrer un chat.</div>
       <div class="contactOnline">
         <ul class="containerOnline"></ul>
       </div>
+      <div class="interactionChat"></div>
+      <div class="startChat clearfix">     </div>
     </div>
   </body>
 </html>

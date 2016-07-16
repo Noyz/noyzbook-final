@@ -33,6 +33,38 @@ body {
   height: 427px;
 }
 
+.passwordLost {
+  display: block;
+  cursor: pointer;
+}
+
+#formPasswordLost {
+  display: none;
+}
+
+.cancelReset {
+  display: block;
+  cursor: pointer;
+}
+
+.notificationMailNok {
+  display: none;
+  color: red;
+  text-align: center;
+}
+
+.notificationMailOk {
+  display: none;
+  color: green;
+  text-align: center;
+}
+
+/**** TOUTES LES PAGES ****/
+.navbar-header img {
+  height: 70px;
+  width: auto;
+}
+
 /**** PAGE PROFIL ****/
 .imgProfil {
   height: auto;
@@ -161,10 +193,21 @@ body {
   cursor: pointer;
 }
 
+.newMessageWallEdit {
+  width: 40%;
+  margin: 0 auto;
+  display: none;
+}
+
+.newMessageWallEdit button {
+  width: 20px;
+}
+
 /**** PAGE EDITION ****/
 .redaction {
   width: 80%;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 /**** PAGE notifications ****/
@@ -189,6 +232,7 @@ body {
   margin: 0 auto;
   margin-top: 5px;
   text-align: center;
+  margin-top: 50px;
 }
 
 .notificationUser .agreeFriend {
@@ -272,6 +316,11 @@ body {
   text-align: center;
 }
 
+.contenuListFriends .pictureFriend img {
+  height: 150px;
+  width: auto;
+}
+
 .contenuListFriends .contenuFriend {
   padding: 3%;
   color: black;
@@ -284,6 +333,7 @@ body {
   margin: 0 auto;
   margin-top: 5px;
   margin-bottom: 15px;
+  width: 60%;
 }
 
 .contenuListFriends .updateFriend {
@@ -305,7 +355,7 @@ body {
   float: left;
 }
 
-.contenuListFriends .chatFriend {
+.contenuListFriends .suggestionFriend {
   float: right;
 }
 
@@ -336,9 +386,24 @@ body {
   margin-top: 5px;
 }
 
+.buttonPublicWallFriend {
+  margin-top: 15px;
+}
+
 /*****Page Friend wall *****/
 .articleFriend {
   margin-bottom: 10px;
+}
+
+.publishingOnWallFriend {
+  margin-top: 15px;
+  cursor: pointer;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.publishingOnWallFriend form {
+  display: none;
 }
 
 /*****Page Private Message  editor*****/
@@ -381,4 +446,129 @@ body {
 
 .goRight {
   text-align: right;
+}
+
+/*****Page Tchat *****/
+.containerChat {
+  width: 100%;
+}
+
+.containerChat .tchat {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.containerChat .interactionChat {
+  display: inline-block;
+  padding: 15px;
+  box-shadow: 4px 4px 6px #DDD;
+  width: 50%;
+  height: 150px;
+  margin-left: 10%;
+  background-color: white;
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: top;
+}
+
+.containerChat .userChat {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 40%;
+}
+
+.containerChat .userChat button {
+  display: block;
+  margin-right: 20px;
+}
+
+.containerChat .userChat .showHide {
+  margin-right: 10px;
+}
+
+.containerChat .contentChat {
+  margin-bottom: 12px;
+}
+
+.containerChat .contentChat p {
+  margin: 0;
+}
+
+.containerChat .contactOnline {
+  display: inline-block;
+  padding: 15px;
+  box-shadow: 4px 4px 6px #DDD;
+  width: 30%;
+  height: 150px;
+  overflow-y: scroll;
+  margin-left: 10%;
+  background-color: white;
+}
+
+.containerChat .contactOnline li {
+  margin-bottom: 30px;
+}
+
+.containerChat .contactOnline .chatOffer {
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.containerChat .contactOnline .chatOffer:hover {
+  cursor: pointer;
+}
+
+.containerChat .contactOnline .offer {
+  text-align: center;
+}
+
+.containerChat .contactOnline .thisContactChat button {
+  float: right;
+  margin-left: 10px;
+}
+
+.formAdmin {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.containerMembers {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.containerMembers .thisMember {
+  margin-top: 25px;
+}
+
+.containerMembers .traitement a {
+  cursor: pointer;
+  margin-right: 5px;
+  display: block;
 }

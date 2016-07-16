@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Le Réseau social</title>
-    <script src="https://cdn.socket.io/socket.io-1.0.0.js"> </script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/stylesheet.css">
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"> </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Le Réseau social Noyzbook</title>
+    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/heroic-features.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/newstylesheet.css">
+    <script src="../Asset/jquery.js"></script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="../Asset/accueil.js"> </script>
     <script src="../Asset/profil.js"></script>
     <script src="../Asset/notification.js"></script>
     <script src="../Asset/listUsers.js"></script>
     <script src="../Asset/listFriends.js"></script>
     <script src="../Asset/wallFriend.js"></script>
-    <script src="../Asset/script.js"></script>
+    <script src="../Asset/privateMessage.js"></script>
+    <script src="../Asset/edition.js"></script>
+    <script src="../Asset/tchat.js"></script>
+    <script src="../Asset/administrateur.js"></script>
+    <script type="text/javascript" src="../Asset/newscript.js"></script>
+    <script src="../Asset/bootstrap.min.js"></script>
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid"></div>
+    <div class="header">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
-          <p class="navbar-text navbar-left"><strong>NoyzBook de : </strong><a href="/" title="Page d'Accueil" class="navbar-link">Se déconnecter</a></p>
+          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Se déconnecter de :</a>
         </div>
-        <div id="actionBar"></div>
-        <div id="userbar">
-          <p> <a href="myprofil"><img src="img/meprofil.png" title="Mon profil" class="profil"></a></p>
-          <p><a href="notifications"><img id="notif" src="img/notification.png" title="Vos notifications"></a></p>
-          <p> <a href="listUsers"><img src="img/addUser.png" title="Ajouter un utilisateur" class="friend"></a></p>
-          <p><a href="listFriends"><img src="img/friend.png" title="Ajouter un ami" class="addFriend"></a></p>
-          <p> <img src="img/unfriend.png" title="Supprimer un ami" class="deleteFriend"></p>
-          <p> <img src="img/message.png" title="Messages privée" class="privateMessage"></p>
-          <p> <img src="img/talkTo.png" title="Chat" class="chat"></p>
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="accueil" class="accueilShortcut">Accueil</a></li>
+            <li><a href="myprofil" class="profilShortcut">Mon profil</a></li>
+            <li><a href="notifications" class="notificationsShortcut">Notification</a></li>
+            <li><a href="listUsers" class="listUsersShortcut">Ajouter un utilisateur</a></li>
+            <li><a href="listFriends" class="listFriendsShortcut">Mes amis  </a></li>
+            <li><a href="privateMessage" class="privateMessagesShortcut">Message privée</a></li>
+            <li><a href="tchat" class="tchatShortcut">Tchat </a></li>
+          </ul>
         </div>
       </nav>
-    </header>
-    <ul class="containerMessageFriend"></ul>
+    </div>
+    <div class="container">
+      <div class="publishingOnWallFriend"><a style="text-align:center" class="editFriendWallMessage">Publier un message sur le mur de votre ami</a>
+        <form class="formMessagePublicFriend">
+          <textarea></textarea>
+          <button class="btn btn-success buttonPublicWallFriend">Publier sur son mur  </button>
+        </form>
+      </div>
+      <ul class="containerMessageFriend"></ul>
+    </div>
   </body>
 </html>

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	var setListUsers = {
 		arrayUsers : [],
+		obj:{},
 		setList : function(){
 		var that = this;
 			$.ajax({
@@ -8,8 +9,10 @@ $(document).ready(function(){
 				url:"/loadList",
 				data: {data:localStorage.getItem('noyzCookie')},
 				success: function(obj){
+					console.log('hit')
 					var from = $('.navbar-brand').text().substr(20);
 					var tabUsers = [];
+					that.arrayUsers = [];
 	                	for(var i = 0;i<obj.data.length;i++){
 	                		tabUsers.push(obj.data[i].username)
 	                	}
@@ -26,7 +29,9 @@ $(document).ready(function(){
 			});
 		},
 		updateUsers : function(list){
+			var that = this;
 			$('.nameUser').each(function(){
+				that.obj.divers = $(this).text();
 				for(var i = 0;i < list.data.length;i++){
 					if($(this).text() == list.dataToDelete[i]){
 						$(this).closest('li').remove();
@@ -34,6 +39,7 @@ $(document).ready(function(){
 				}
 			});
 			$('.addUser').on('click', function(){
+				that.obj.divers = $(this).closest('div');
 				var name_user = $(this).closest('.updateUser').siblings('.nameUser').html();
 				$.ajax({
 					type:"POST",
@@ -46,14 +52,19 @@ $(document).ready(function(){
 			});
 		},
 		sendRequestUser : function(name){
+			var that = this;
+			console.log(name)
 			var from = $('.navbar-brand').text().substr(20);
-			console.log(from)
 			$.ajax({
 				type:"POST",
 				url:"/requestThisUser",
 				data: {from:from, to:name},
 				success: function(data){
-	            	console.log(data);
+					$(that.obj.divers).after('<p>Invitation envoyée !</p>');
+					$(that.obj.divers).find('button').attr('disabled','disabled');
+					setTimeout(function(){
+						$(that.obj.divers).parent().fadeOut(1000);
+					}, 2000);
 	           	}
 			});
 		}

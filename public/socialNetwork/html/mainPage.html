@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Heroic Features - Start Bootstrap Template</title>
+    <title>Le Réseau social Noyzbook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/heroic-features.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/newstylesheet.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../Asset/newscript.js"> </script>
   </head>
   <body>
-    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar">NoyzBook</a>
@@ -31,8 +31,9 @@
     <div class="container">
       <header class="jumbotron hero-spacer">
         <h1>Bienvenue sur le réseau social de Julian NOYON : Noyzbook</h1>
-        <p>Vous pouvez vous inscrire ou vous connecter à un compte déjà existant. La connexion anonyme est actuellement indisponible.</p>
+        <p>Vous pouvez vous inscrire ou vous connecter à un compte déjà existant.</p>
         <p><a class="btn btn-primary btn-large">Connexion anonyme</a></p>
+        <p><a href="/administrateur" class="btn btn-primary btn-large">Administrateur  </a></p>
       </header>
       <hr>
       <div class="row">
@@ -43,43 +44,50 @@
       <div class="row text-center">
         <div class="col-md-6 col-sm-6 hero-feature">
           <div id="subscription">
-            <form id="formSub" method="POST" action="/Sub" novalidate="">
-              <legend>Formulaire d'inscription</legend>
-              <div class="form-group">
-                <label for="usernameSub">Votre username</label>
-                <input type="text" name="usernameSub" placeholder="Ex : Dupont" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="mailSub">Votre e-mail</label>
-                <input id="mailSub" type="mail" name="mailSub" placeholder="Azor-ahai@gmail.com" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="passwordSub">Votre mot de passe</label>
-                <input id="passwordSub" type="password" name="passwordSub" placeholder="" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="passwordSubConfirm">Confirmer mot de passe</label>
-                <input id="passwordSubConfirm" type="password" placeholder="" class="form-control">
-              </div>
-              <p class="errorSub"></p>
-              <button type="submit" value="s'inscrire" class="btn btn-default">S'inscrire</button>
-            </form>
+            <form id="formSub" method="POST" action="/Sub" novalidate=""></form>
+            <div class="form-group">
+              <label>Votre username</label>
+              <input type="text" name="usernameSub" placeholder="Ex : Dupont" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="mailSub">Votre e-mail</label>
+              <input id="mailSub" type="email" name="mailSub" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="passwordSub">Votre mot de passe</label>
+              <input id="passwordSub" type="password" name="passwordSub" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="passwordSubConfirm">Confirmer mot de passe</label>
+              <input id="passwordSubConfirm" type="password" placeholder="" class="form-control">
+            </div>
+            <p class="errorSub"></p>
+            <button type="submit" value="s'inscrire" class="btn btn-default">S'inscrire</button>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 hero-feature">
           <div id="login">
             <form id="formLog" method="POST" action="/connect" novalidate="">
-              <legend>Formulaire de connexion</legend>
               <div class="form-group">
-                <label for="usernameLog">Votre username</label>
+                <label>Votre username</label>
                 <input type="text" name="usernameLog" placeholder="Ex : Dupont" class="form-control">
               </div>
               <div class="form-group">
-                <label for="passwordLog">Votre mot de passe</label>
-                <input id="passwordLog" type="password" name="passwordLog" placeholder="" class="form-control">
+                <label>Votre mot de passe</label>
+                <input id="passwordLog" type="password" name="passwordLog" class="form-control">
               </div>
               <p class="errorLog"></p>
-              <button type="submit" class="btn btn-default">Se connecter</button>
+              <button type="submit" class="btn btn-default">Se connecter</button><a class="passwordLost">Mot de passe perdu ?</a>
+            </form>
+            <form id="formPasswordLost" method="POST" action="/connect" novalidate="">
+              <div class="form-group">
+                <label>Votre adresse mail</label>
+                <input type="email" name="mailPasswordLost" placeholder="Ex : Dupont@gmail.com" class="form-control">
+              </div>
+              <p class="errorLog"></p>
+              <button type="submit" class="btn btn-default validReset">Envoyer un mail de réintialisation</button><a class="cancelReset">Annuler</a>
+              <p class="notificationMailOk">Votre nouveau mot de passe vous à été envoyés par mail !</p>
+              <p class="notificationMailNok">Cette adresse ne correspond à aucune adresse connue</p>
             </form>
           </div>
         </div>

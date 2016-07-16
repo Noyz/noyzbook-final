@@ -28,7 +28,39 @@ body{
 	height:427px;
 }
 
+.passwordLost{
+	display:block;
+	cursor:pointer;
+}
 
+#formPasswordLost{
+	display:none;
+}
+
+.cancelReset{
+	display:block;
+	cursor:pointer;
+}
+
+.notificationMailNok{
+	display:none;
+	color:red;
+	text-align:center;
+}
+.notificationMailOk{
+	display:none;
+	color:green;
+	text-align:center;
+}
+
+
+/**** TOUTES LES PAGES ****/
+.navbar-header {
+	img{
+		height:70px;
+		width:auto;
+	}
+}
 
 /**** PAGE PROFIL ****/
 .imgProfil{
@@ -96,6 +128,7 @@ body{
 	color:red;
 }
 
+
 /**** PAGE ACCUEIL ****/
 .senderImg{
 	height:70px;
@@ -149,11 +182,20 @@ body{
 	.cancelDelete:hover{
 		cursor:pointer;
 	}
+	.newMessageWallEdit{
+		width:40%;
+		margin:0 auto;
+		display:none;
+		button{
+			width:20px;
+		}
+	}
 
 /**** PAGE EDITION ****/
 .redaction{
 	width:80%;
 	margin:0 auto;
+	margin-top: 40px;
 }
 
 /**** PAGE notifications ****/
@@ -171,6 +213,7 @@ body{
 .notificationUser{
 	@include widthContent();
 	text-align:center;
+	margin-top:50px;
 	.agreeFriend{
 		margin-right:6px;
 	}
@@ -235,10 +278,15 @@ body{
 	}
 	.pictureFriend{
 		text-align:center;
+		img{
+			height:150px;
+			width:auto;
+		}
 	}
 	.contenuFriend{
 		@include widthContent;
 		margin-bottom:15px;
+		width:60%;
 	}
 	.updateFriend{
 		width: 40%;
@@ -255,7 +303,8 @@ body{
 	.privateMessageFriend{
 		float:left;
 	}
-	.chatFriend{
+
+	.suggestionFriend{
 		float:right;
 	}
 	.btn-danger{
@@ -274,10 +323,23 @@ body{
 #contenuFriendWall{
 	@include widthContent;
 }
+.buttonPublicWallFriend{
+	margin-top:15px;
+}
 
 /*****Page Friend wall *****/
 .articleFriend{
 	margin-bottom:10px;
+}
+.publishingOnWallFriend{
+	margin-top:15px;
+	cursor:pointer;
+	width: 50%;
+    margin: 0 auto;
+    form{
+    	display:none;
+    	
+    }
 }
 
 /*****Page Private Message  editor*****/
@@ -309,6 +371,95 @@ body{
 }
 .goRight{
 	text-align:right;
+}
+/*****Page Tchat *****/
+.containerChat{
+	width:100%;
+	.tchat{
+		margin-top:15px;
+		margin-bottom:15px;
+	}
+	.interactionChat{
+		display: inline-block;
+	    padding: 15px;
+	    box-shadow: 4px 4px 6px #DDD;
+	    
+	    width: 50%;
+	    height: 150px;
+	    margin-left: 10%;
+	    background-color: white;
+		display:inline-block;
+		margin-left:20px;
+		vertical-align:top;
+	}
+	.userChat{
+		@include widthContent;
+		width:40%;
+
+		button{
+			display:block;
+			margin-right:20px
+		}
+		.showHide{
+			margin-right:10px;
+		}
+	}
+	.contentChat{
+		margin-bottom:12px;
+		p{
+			margin:0;
+		}
+	}
+	.contactOnline{
+		display:inline-block;
+		padding:15px;
+		box-shadow: 4px 4px 6px #DDD;
+		width:30%;
+		height:150px;
+		overflow-y:scroll;
+		margin-left:10%;
+		background-color:white;
+		li{
+			margin-bottom:30px;
+		}
+		.chatOffer{
+			display:inline-block;
+			text-align:center;
+			margin-left:10px;
+			&:hover{
+				cursor:pointer;
+			}
+		}
+		.offer{
+			text-align:center;
+		}
+		.thisContactChat{
+			button{
+				float:right;
+				margin-left:10px;
+			}
+		}
+		
+	}
+}
+
+.formAdmin{
+	@include widthContent;
+	text-align:center;
+}
+
+.containerMembers{
+	@include widthContent;
+		.thisMember{
+			margin-top:25px;
+		}
+	.traitement{
+		a{
+			cursor:pointer;
+			margin-right:5px;
+			display:block;
+		}
+	}
 }
 
 

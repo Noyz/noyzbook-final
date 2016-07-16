@@ -10,7 +10,7 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 var store = new MongoDBStore(
       { 
         uri: 'mongodb://connect_mongodb_session_test:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp',
-        collection: 'mySessions'
+        collection: 'utilisateurs'
       });
 var cookieParser = require('cookie-parser');
 var MongoClient = require('mongodb').MongoClient;
@@ -25,6 +25,7 @@ var maDb;
 var today;
 var userConnected = {};
 var fromTo;
+var room = 0;
 var multer = require('multer');
 const socketIo = require('socket.io');
 var IOServer = socketIo(httpServer);
@@ -45,6 +46,8 @@ setInterval(function(){
 		today = dayOfWeek + " " + dayMonth + "  " + curMonth + ' ' + curYear + ", " + curHour + ":" + curMinute + "." + curSeconds + ' '+ curMeridiem + " ";
 }, 1000);
 
+
+
 app.set('view engine', 'jade');
 app.set('views', 'public/socialNetwork/jade');
 
@@ -59,6 +62,7 @@ var transporter = nodemailer.createTransport("SMTP", {
     }
 });
 
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, __dirname + '/public/socialNetwork/img/uploads')
@@ -68,6 +72,23 @@ var storage = multer.diskStorage({
     user.profil = 'img/uploads/' + file.originalname;
   }
 });
+
+// var storage = s3({
+// 	destination : function( req, file, cb ) {
+		
+// 		cb( null, 'multer-uploads/my-files' );
+		
+// 	},
+// 	filename    : function( req, file, cb ) {
+		
+// 		cb( null, file.fieldname + '-' + Date.now() );
+		
+// 	},
+// 	bucket      : 'noyzbook',
+// 	region      : 'Oregon'
+// });
+
+
 var upload = multer({storage : storage});
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -88,6 +109,10 @@ app.get('/', function(req, res) {
 
 app.get('/accueil', function(req, res) {
 	res.render('accueil');
+});
+
+app.get('/administrateur', function(req, res){
+	res.render('administrateur')
 });
 
 app.get('/myProfil', function(req, res) {
@@ -138,8 +163,45 @@ app.get('/pageChat', function(req, res) {
 	res.render('popupChat');
 });
 
-app.get('/test', function(req, res){
-	res.render('mainPage_boo')
+app.post('/verificationConnexionAdmin', function(req, res){
+	var collectionAdmin = maDb.collection('administrateurs');
+	collectionAdmin.find({username:req.body.username, password:req.body.password}).toArray(function(err, data){
+		if(data == ''){
+			res.send('0');
+		}else{
+			res.send('1');
+		}
+	});
+});
+
+app.post("/getMembers", function(req, res){
+	var collectionAdmin = maDb.collection('utilisateurs');
+	collectionAdmin.find({}).toArray(function(err, data){
+		res.send(data);
+	});
+});
+
+
+app.post('/connectAdmin',function(err,data){
+	var urlAdmin = "mongodb://administrateur:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp";
+	var collectionAdmin = maDb.collection('administrateurs'); 
+	var collectionUsers = maDb.collection('utilisateurs');
+	MongoClient.connect(urlAdmin, function(err, db) {
+	  if (err) {
+		res.send('Impossible d\'accéder à votre base de données')
+	  }
+		maDb = db;
+		// var collection = maDb.collection('administrateur');
+		collectionAdmin.find({}).toArray(function(err, data){
+			console.log(data)
+		});
+		collectionUsers.find({}).toArray(function(err, data){
+			console.log(data)
+		});
+		server.listen(process.env.PORT || 3000, function(){
+			console.log("Express server listening Y on port %d in %s mode", this.address().port, app.settings.env);
+		});
+	});
 });
 
 
@@ -162,7 +224,7 @@ app.get('/test', function(req, res){
 		 mailUser = req.body.mailSub;
 		 passwordUser = req.body.passwordSub;
 		var collection = maDb.collection('utilisateurs');
-		collection.find({username:pseudoUser}, {_id:0}).toArray(function(err, data){ 
+		collection.find({username:pseudoUser, mail:req.body.mailSub}, {_id:0}).toArray(function(err, data){ 
 			if(data == ''){
 				avertissement = 'Votre compte à correctement été crée ' + pseudoUser;
 				collection.insertOne({username : pseudoUser, password:passwordUser, mail:mailUser,amis:[], privateMessages:{}});
@@ -170,7 +232,7 @@ app.get('/test', function(req, res){
 					from: 'noyzbook@no-reply.com',
 				    to: mailUser,
 				    subject: 'Bienvenue à toi ' + pseudoUser,
-				    text: 'Bienvenue sur le réseau social Noyzbook ! \n\n  J\'espere que vous passerez une agréable viste sur mon site.\n'},
+				    text: 'Bienvenue sur le réseau social Noyzbook ! \n\n  J\'espere que tu passeras un agréable moment sur mon site.\n'},
 					function(err){
 					    if(err){
 					        console.log(err);
@@ -215,7 +277,6 @@ app.get('/test', function(req, res){
 	});
 	
 	app.post('/connexionToProfilLog', function(req, res){
-		console.log(req.body)
 		pseudoUser = req.body.username;
 		passwordUser = req.body.password;
 		var collection = maDb.collection('utilisateurs');
@@ -223,8 +284,34 @@ app.get('/test', function(req, res){
 				if(err){
 			}else{
 				user.information = data;
-				collection.updateOne({username:pseudoUser} , { $set: { "dataCookie": req.body.dataCookie }}); 
+				collection.updateOne({username:pseudoUser} , { $set: { "dataCookie": req.body.dataCookie, privateMessage:[] }}); 
 				res.send(user)	
+			}
+		});
+	});
+
+	
+
+	app.post('/resetPassword', function(req, res){
+		var collection = maDb.collection('utilisateurs');
+		collection.find({mail:req.body.data}).toArray(function(err, data){
+			if(data[0] != undefined){
+				var newPassword = "mamouth" + Math.random();
+				transporter.sendMail({
+					from: 'noyzbook@no-reply.com',
+				    to: data[0].mail,
+				    subject: 'Réinitialisation de mot de passe,',
+				    text: 'Vous avez demandez la réintialisation de votre mot de passe. \n Votre nouveau mot de passe temporaire est :' +newPassword + '\n Connectez vous sur votre profil afin de pouvoir le modier'},
+					function(err){
+					    if(err){
+					        console.log(err);
+					    }
+				});
+				console.log(data[0].username)
+				collection.updateOne({username:data[0].username} , { $set: { "password": newPassword}});
+				res.send('1'); 
+			}else{
+				res.send('0');
 			}
 		});
 	});
@@ -293,6 +380,19 @@ app.get('/test', function(req, res){
 		});
 	});
 
+	app.post('/createMessagePublic', function(req, res){
+		var obj = {};
+		var collection = maDb.collection('utilisateurs');
+		collection.find({dataCookie:req.body.dataCookie}, {_id:0, messagePublic:1}).toArray(function(err, data){
+				if(err){
+			}else{
+				obj.messageActual = data;
+				obj.messageAmodifier = req.body;
+				res.send(obj);
+			}
+		});
+	});
+
 	/**************PAGE PROFIL *************************/
 
 	app.post('/autoFillingRequest', function(req, res){
@@ -319,6 +419,14 @@ app.get('/test', function(req, res){
 		});
 	});
 
+	
+	app.post("/autoFillingPicture", function(req, res){
+		var collection = maDb.collection('utilisateurs');
+		collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
+			res.send(data[0]);
+		});
+	});
+
 	app.post("/updateProfilInfo", function(req, res){
 		var collection = maDb.collection('utilisateurs');
 		collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
@@ -330,7 +438,7 @@ app.get('/test', function(req, res){
 
 	app.post('/upload', upload.single('image'), function(req, res, next){
 		console.log(req.file);
-		res.send('');
+		res.redirect('myprofil');
 	});
 
 	app.post('/loadProfilPicture', function(req, res){
@@ -474,23 +582,24 @@ app.get('/test', function(req, res){
 
 	/******* Edition *******/
 	app.post('/sendMessage', function(req, res){
-		console.log("message")
 		var collection = maDb.collection('utilisateurs');
 		collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
 			if(err){
 
 			}else{
-				var arrayMessageAndTime = [req.body.message, today];  
-				var newMessagePublic = treatMessagePublicArray(data[0].messagePublic, arrayMessageAndTime);
-				collection.updateOne({dataCookie:req.body.dataCookie} , { $set: { messagePublic : newMessagePublic}}); 
-				res.send(data);
+				var arrayMessageAndTime = [req.body.message, today];
+				var newMessagePublic = treatMessagePublicArray(data[0].messagePublic, arrayMessageAndTime);  
+				collection.updateOne({dataCookie:req.body.dataCookie} , { $set: { messagePublic : newMessagePublic}});
+				collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
+					res.send(data[0].messagePublic);
+				}); 
 			}
 		});
 	});
 
 	/******* ListUsers *******/
 	app.post('/loadList', function(req, res){ // charge la liste de tout les utilisateurs qui sont dans la base de données amis de l'utilisateur
-		var collection = maDb.collection('utilisateurs'); 
+		var collection = maDb.collection('utilisateurs');
 		collection.find({}).toArray(function(err, data){ 
 			if(err){
 			}else{
@@ -541,7 +650,7 @@ app.get('/test', function(req, res){
 
 			}else{
 				var userMail = data[0];
-				var notification = ['Vous avez reçu une requête d\'ami venant de : ' + req.body.from]
+				var notification = ['Vous avez reçu une requête d\'ami venant de : ' + req.body.from];
 				var newNotification = treatNotifications(data[0].Notification, notification);
 				var nbr = data[0].Notification;
 				if(nbr == undefined){
@@ -549,17 +658,18 @@ app.get('/test', function(req, res){
 				}else{
 					nbr = data[0].Notification.length;
 				}
-				collection.updateOne({username:req.body.to}, { $set: { 'Notification' : newNotification, 'NbrNotification' : nbr}});
-				transporter.sendMail({
-					from: 'kurgaminoyz@gmail.com',
-				    to: userMail.mail,
-				    subject: 'Nouvelle notification!',
-				    text: 'Bonjour,\n Vous avez reçu une notification venant de : '+ req.body.from + '\nCliquer <a href="http://localhost:5000/">ici</a> pour y accéder.'},
-					function(err){
-					    if(err){
-					        console.log(err);
-					    }
-				});
+			res.send('ok')
+				// collection.updateOne({username:req.body.to}, { $set: { 'Notification' : newNotification, 'NbrNotification' : nbr}});
+				// transporter.sendMail({
+				// 	from: 'kurgaminoyz@gmail.com',
+				//     to: userMail.mail,
+				//     subject: 'Nouvelle notification!',
+				//     text: 'Bonjour,\n Vous avez reçu une notification venant de : '+ req.body.from + '\nCliquer <a href="http://noyzbook.herokuapp.com/">ici</a> pour y accéder.'},
+				// 	function(err){
+				// 	    if(err){
+				// 	        console.log(err);
+				// 	    }
+				// });
 			}
 		});
 	});
@@ -608,7 +718,9 @@ app.get('/test', function(req, res){
 
 			}else{
 				userWall = data;
-				res.send(req.body.name_user);
+				collection.find({}).toArray(function(err, data){
+					res.send({actualUserInfo:userWall, everyUser:data});
+				});
 			}
 		});
 	});
@@ -638,7 +750,33 @@ app.get('/test', function(req, res){
 		});
 	});
 
-	
+	app.post("/deleteThisFriend", function(req, res){
+		var thatUser = req.body.receveur;
+		var collection = maDb.collection('utilisateurs');
+		collection.find({dataCookie:req.body.dataCookie}, {_id:0}).toArray(function(err, data){
+				if(err){
+			}else{
+				var exp = data[0].username;
+				for (var i=data[0].amis.length;i>=0;i--) {
+			        if (data[0].amis[i] != req.body.receveur){
+			           var newFriendsMe = data[0].amis.splice(i, 1);
+			        }   	
+			    }
+			    collection.find({username:thatUser}, {_id:0, amis:1}).toArray(function(err, data){
+			    	for (var i=data[0].amis.length;i>=0;i--) {
+				        if (data[0].amis[i] != exp){
+				           var newFriendsHim = data[0].amis.splice(i, 1);
+				        }   	
+				    }
+				    collection.updateOne({username:req.body.receveur}, {$set:{"amis": newFriendsHim}});
+			    });
+			    collection.updateOne({dataCookie:req.body.dataCookie}, {$set:{"amis": newFriendsMe }});
+	            collection.find({dataCookie:req.body.dataCookie}, {_id:0, amis:1}).toArray(function(err, data){
+					res.send(data[0].amis);
+	            });
+			}
+		});
+	});	
 
 	/***writing on wall friend ***/
 	
@@ -652,18 +790,20 @@ app.get('/test', function(req, res){
 	});
 
 	app.post("/sendMessageToFriend", function(req, res){
+		console.log('hit')
+		console.log(req.body)
 		var collection = maDb.collection('utilisateurs');
 		var expediteur;
 		collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
 			expediteur = data[0].username;
 		});
-		collection.find({username:fromTo.receveur}).toArray(function(err, data){
+		collection.find({username:req.body.receveur}).toArray(function(err, data){
 			if(err){
 
 			}else{
 				var arrayMessageAndTime = [req.body.message, today, expediteur];  
 				var newMessagePublic = treatMessagePublicArray(data[0].messagePublic, arrayMessageAndTime);
-				collection.updateOne({username:fromTo.receveur}, { $set: { messagePublic : newMessagePublic}});
+				collection.updateOne({username:req.body.receveur}, { $set: { messagePublic : newMessagePublic}});
 				/*** Notification envoyé ****/
 				var notification = [expediteur + ' à écrit sur votre mur.']
 				var newNotification = treatNotifications(data[0].Notification, notification);
@@ -673,7 +813,7 @@ app.get('/test', function(req, res){
 				}else{
 					nbr = data[0].Notification.length;
 				}
-				collection.updateOne({username:fromTo.receveur}, { $set: { 'Notification' : newNotification, 'NbrNotification' : nbr}});
+				collection.updateOne({username:req.body.receveur}, { $set: { 'Notification' : newNotification, 'NbrNotification' : nbr}});
 				transporter.sendMail({
 					from: 'kurgaminoyz@gmail.com',
 				    to: data[0].mail,
@@ -684,6 +824,7 @@ app.get('/test', function(req, res){
 					        console.log(err);
 					    }
 				});
+				console.log('insertion : ok')
 				res.send(data);
 			}
 		});
@@ -752,45 +893,95 @@ app.get('/test', function(req, res){
 			});
 		});
 	});
-	
+	var room1 = 'room1';
+	var room2 = 'room2';
+	var usernames = {};
 /////////////////////////////////////CHAT AND SOCKET /////////////////////////////////////////////
 io.on('connection', function(socket){
 	socket.emit('askInfoUser');
+
 	socket.on('new user', function(data){
 		socket.nickname = data;
 		userConnected[socket.nickname] = socket;
+		usernames[socket.nickname] = socket.nickname;
 		io.emit("displayOnlineContact", Object.keys(userConnected));
 	});
 
-	socket.on('disconnect', function(data){
-		delete userConnected[socket.nickname];
-		io.emit("displayOnlineContact", Object.keys(userConnected));
+
+
+
+
+
+
+
+	socket.on('join room 1', function(room) {
+     	socket.leave('room2');
+     	socket.join('room1');
+    });
+
+    socket.on('join room 2', function(room) {
+    	socket.leave('room1');
+     	socket.join('room2');
+    });
+
+	socket.on('send All', function(data){
+    	io.sockets.in('room1').emit('message', 'what is going on, room1?');
 	});
+
+	socket.on('send All 2', function(data){
+    	io.sockets.in('room2').emit('message', 'what is going on, room2?');
+	});
+
 
 	socket.on('sendInvitation', function(data){
 		userConnected[data.userClicked].emit('notificationInvitation', data.currentUser);
 	});
 
-	socket.on('openNewChatBox', function(data){
-		userConnected[data].emit('chatOpen', socket.nickname);
-		userConnected[socket.nickname].emit('chatOpen', data);
+
+	socket.on('disconnect', function(data){
+		delete userConnected[socket.nickname];
+		socket.leave();
+		io.emit("displayOnlineContact", Object.keys(userConnected));
 	});
 
-	socket.on('send message', function(data){
-		userConnected[socket.nickname].emit('new message', {exp:socket.nickname, msg:data.message, dest:data.messageTo});
-		userConnected[data.messageTo].emit('new message', {exp:socket.nickname , msg:data.message, dest:socket.nickname});
+
+	socket.on('inviteInRoom', function(data){
+		var collection = maDb.collection('utilisateurs');
+		var abysse = socket.nickname + data;
+		var exp = data;
+		userConnected[data].join(abysse);
+		userConnected[socket.nickname].join(abysse);
+		var tchatRoom = {};
+		tchatRoom[abysse] = socket.nickname + data;
+		collection.updateOne({username:socket.nickname}, {$set:{'room' : tchatRoom}})
+		collection.updateOne({username:data}, {$set:{'room' : tchatRoom}});
+		collection.find({username:socket.nickname}).toArray(function(){
+			io.sockets.in(abysse).emit('chatOpen', {room:socket.nickname + data, socketAuteur : socket.nickname, date:today, exp:data});
+		});
+
 	});
+
+
+
+	socket.on('send message', function(data){
+		io.sockets.in(data.room).emit('new message', {room:data.room, data:data.message , myname:data.myName});
+	});
+	
+
+	app.post("/updateContactOnline", function(req, res){
+		var collection = maDb.collection('utilisateurs');
+		collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
+			if(data[0] != undefined){
+				res.send(data[0].amis)
+			}
+		});
+	});
+/****/
 });
 
 
-app.post("/updateContactOnline", function(req, res){
-	var collection = maDb.collection('utilisateurs');
-	collection.find({dataCookie:req.body.dataCookie}).toArray(function(err, data){
-			res.send(data[0].amis)
-	});
-})
-
 /*** Fonction ***/
+
 
 	var treatMessagePublicArray = function(arrayMessages, userMessage){
 		if(arrayMessages == undefined){
@@ -915,11 +1106,14 @@ app.post("/updateContactOnline", function(req, res){
 //  });
 
 var url = "mongodb://utilisateurs:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp";
+var urlAdmin = "mongodb://administrateur:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp" 
 MongoClient.connect(url, function(err, db) {
   if (err) {
 	res.send('Impossible d\'accéder à votre base de données')
   }
 	maDb = db;
+	// var collection = maDb.collection('administrateur');
+	// collection.find({}).toArray()
 	// 
 	server.listen(process.env.PORT || 3000, function(){
 		console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

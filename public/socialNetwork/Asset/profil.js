@@ -11,6 +11,15 @@ $(document).ready(function(){
 					that.autoFillingFonction(toFill);	
 	            }
 			});
+			$.ajax({
+				url:"/autoFillingPicture",
+				type:"POST",
+				data:{dataCookie:localStorage.getItem('noyzCookie')},
+				success: function(data){
+					console.log(data)
+					$('.profilImg').attr('src', data.profil);
+	            }
+			});
 		},
 		autoFillingFonction : function(toFill){
 			var infoContact = Object.keys(toFill);
@@ -44,7 +53,7 @@ $(document).ready(function(){
 					type:"POST",
 					data:{data:localStorage.getItem('noyzCookie')},
 					success: function(data){
-						$('.profilImg').attr('src', data.profil);
+						$('.imgProfil').attr('src', data.profil);
 		 				window.location.href = 'http://localhost:5000/accueil'
 		            }
 				});

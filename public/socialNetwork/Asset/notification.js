@@ -7,6 +7,7 @@ $(document).ready(function(){
 				url:"/loadNotification",
 				data: {data:localStorage.getItem('noyzCookie')},
 				success: function(data){
+					console.log('hit notif')
 					if(data.length != undefined){
 		               	var that = this;
 						var html = [];
@@ -27,23 +28,23 @@ $(document).ready(function(){
 			});
 		},
 		interactionNotification : function(data){
-				setTimeout(function(){
-					$('li').each(function(){
-						var patt = new RegExp("ami");
-						var patt2 = new RegExp("mur");
-						var res = patt.test($(this).html());
-						var res2 = patt2.test($(this).html());
-						if(res){
-							$(this).find('.actionNotification').html('<button href="#" class="btn btn-success agreeFriend">Accepter</button><button href="#" class="btn btn-success refuseFriend">Refuser</button>');
-						}else if(res2){
-							$(this).find('.actionNotification').html('<button href="#" class=" btn btn-info checkWallMessage">Accéder</button>');
-						}else{
-							//
-						}
-					})
-					window.setNotification.friendshipHandler(data);
-					window.setNotification.checkWallMessage();
-				}, 0);
+			setTimeout(function(){
+				$('li').each(function(){
+					var patt = new RegExp("ami");
+					var patt2 = new RegExp("mur");
+					var res = patt.test($(this).html());
+					var res2 = patt2.test($(this).html());
+					if(res){
+						$(this).find('.actionNotification').html('<button href="#" class="btn btn-success agreeFriend">Accepter</button><button href="#" class="btn btn-success refuseFriend">Refuser</button>');
+					}else if(res2){
+						$(this).find('.actionNotification').html('<button href="#" class=" btn btn-info checkWallMessage">Accéder</button>');
+					}else{
+						//
+					}
+				});
+				window.setNotification.friendshipHandler(data);
+				window.setNotification.checkWallMessage();
+			}, 0);
 		},
 		checkWallMessage : function(){
 			$('.checkWallMessage').click(function(event){
@@ -63,7 +64,7 @@ $(document).ready(function(){
 									url:"/deleteThisNotificationWall",
 									data: {data:localStorage.getItem('noyzCookie'), position:i},
 									success: function(data){
-										window.location.href = "http://noyzbook.herokuapp.com/accueil"
+										window.location.href = "http://localhost:5000/accueil";
 						           	}
 								});
 							}
@@ -79,7 +80,7 @@ $(document).ready(function(){
 				var name_user = $(this).closest('div').siblings('p').text().substr(45);
 				$.ajax({
 					type:"POST",
-					data: {data:localStorage.getItem('noyzCookie'), name_user},
+					data: {data:localStorage.getItem('noyzCookie'), name_user:name_user},
 					url:"/addThisFriend",
 					success: function(data){
 						for(var i = 0 ;i < data.Notification.length;i++){
@@ -91,7 +92,8 @@ $(document).ready(function(){
 									url:"/deleteNotificationFriend",
 									data: {data:localStorage.getItem('noyzCookie'), position:i},
 									success: function(data){
-										console.log('invitation accepter ! ');
+										$('ul.notificationContainer li').remove();
+										window.setNotification.loadNotification();
 						           	}
 								});
 							}
@@ -107,7 +109,7 @@ $(document).ready(function(){
 				$.ajax({
 					type:"POST",
 					url:"/deleteRequestThisFriend",
-					data: {data:localStorage.getItem('noyzCookie'), name_user},
+					data: {data:localStorage.getItem('noyzCookie'), name_user:name_user},
 					success: function(data){
 						for(var i = 0 ;i < data.Notification.length;i++){
 							var patt = new RegExp(this_notification);

@@ -1,3 +1,9 @@
 extends layoutHeader.jade
 block content
-	ul.containerMessageFriend
+  div.container
+    div.publishingOnWallFriend
+        a.editFriendWallMessage(style="text-align:center") Publier un message sur le mur de votre ami
+        form.formMessagePublicFriend
+          textarea
+          button.btn.btn-success.buttonPublicWallFriend Publier sur son mur  
+    ul.containerMessageFriend

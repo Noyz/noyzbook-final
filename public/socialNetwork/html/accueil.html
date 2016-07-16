@@ -11,8 +11,8 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/heroic-features.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/newstylesheet.css">
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="../Asset/jquery.js"></script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="../Asset/accueil.js"> </script>
     <script src="../Asset/profil.js"></script>
     <script src="../Asset/notification.js"></script>
@@ -21,34 +21,40 @@
     <script src="../Asset/wallFriend.js"></script>
     <script src="../Asset/privateMessage.js"></script>
     <script src="../Asset/edition.js"></script>
+    <script src="../Asset/tchat.js"></script>
+    <script src="../Asset/administrateur.js"></script>
     <script type="text/javascript" src="../Asset/newscript.js"></script>
     <script src="../Asset/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="header">
-      <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Se déconnecter de :</a>
-          </div>
-          <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="accueil" class="accueilShortcut">Accueil</a></li>
-              <li><a href="myprofil" class="profilShortcut">Mon profil</a></li>
-              <li><a href="notifications" class="notificationsShortcut">Notification</a></li>
-              <li><a href="listUsers" class="listUsersShortcut">Ajouter un utilisateur</a></li>
-              <li><a href="listFriends" class="listFriendsShortcut">Mes amis  </a></li>
-              <li><a href="privateMessage" class="privateMessagesShortcut">Message privée</a></li>
-              <li><a href="tchat" class="tchatShortcut">Tchat </a></li>
-            </ul>
-          </div>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Se déconnecter de :</a>
+        </div>
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="accueil" class="accueilShortcut">Accueil</a></li>
+            <li><a href="myprofil" class="profilShortcut">Mon profil</a></li>
+            <li><a href="notifications" class="notificationsShortcut">Notification</a></li>
+            <li><a href="listUsers" class="listUsersShortcut">Ajouter un utilisateur</a></li>
+            <li><a href="listFriends" class="listFriendsShortcut">Mes amis  </a></li>
+            <li><a href="privateMessage" class="privateMessagesShortcut">Message privée</a></li>
+            <li><a href="tchat" class="tchatShortcut">Tchat </a></li>
+          </ul>
         </div>
       </nav>
     </div>
     <section>
       <div class="row">
-        <div class="col-lg-12 col-ms-12 col-xs-12"><a href="/edition">
-            <p class="edit">Publier article sur mon mur</p></a></div>
+        <div class="col-lg-12 col-ms-12 col-xs-12"><a style="cursor:pointer">
+            <p class="edit">Publier article sur mon mur</p>
+            <div class="newMessageWallEdit">
+              <form>
+                <textarea class="textareaEditMessage"></textarea>
+                <btn style="margin-top:15px" class="btn btn-success publicMessage">Envoyer  </btn>
+              </form>
+            </div></a></div>
       </div>
       <div class="row">
         <div class="col-lg-12 col-ms-12 col-xs-12">       
