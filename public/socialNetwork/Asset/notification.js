@@ -7,7 +7,6 @@ $(document).ready(function(){
 				url:"/loadNotification",
 				data: {data:localStorage.getItem('noyzCookie')},
 				success: function(data){
-					console.log('hit notif')
 					if(data.length != undefined){
 		               	var that = this;
 						var html = [];
@@ -78,6 +77,7 @@ $(document).ready(function(){
 				var this_notification = $(this).closest('div').siblings('p').text();
 				event.preventDefault();
 				var name_user = $(this).closest('div').siblings('p').text().substr(45);
+				var myname = $('.navbar-brand').text().substr(20);
 				$.ajax({
 					type:"POST",
 					data: {data:localStorage.getItem('noyzCookie'), name_user:name_user},

@@ -136,9 +136,9 @@ $(document).ready(function(){
 		deleteMessage : function(){
 			$('.glyphicon-trash').on('click', function(){
 				var that = $(this);
-				that.closest('li').find(".deleteThisMessage").show(500);
+				that.closest('li').find(".deleteThisMessageAdmin").show(500);
 				$('.cancelDelete').click(function(){
-					that.closest('li').find(".deleteThisMessage").hide();
+					that.closest('li').find(".deleteThisMessageAdmin").show(500);
 				});
 				$('.acceptDelete').click(function(){
 					var nbr = parseInt(that.closest('li').find('.articleUser').attr('class').substr(17));

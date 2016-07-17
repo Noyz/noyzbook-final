@@ -10,6 +10,21 @@ body {
   background-color: #f1f1f1;
 }
 
+.rechercheMembers {
+  float: right;
+  color: white;
+  margin-right: 10px;
+}
+
+.inputSearch {
+  display: block;
+  color: black;
+}
+
+.inputSearchValid {
+  color: black;
+}
+
 /****** MAIN PAGE ********/
 .subscriptionMain:hover {
   cursor: pointer;
@@ -346,7 +361,7 @@ body {
   margin-bottom: 10px;
 }
 
-.contenuListFriends .writingWallFriend {
+.contenuListFriends .informationFriend {
   float: right;
   margin-bottom: 10px;
 }
@@ -550,7 +565,7 @@ body {
   text-align: center;
 }
 
-.containerMembers {
+.thisPublicMessage {
   padding: 3%;
   color: black;
   width: 80%;
@@ -563,6 +578,41 @@ body {
   margin-top: 5px;
 }
 
+.editThisMessageAdmin {
+  display: none;
+}
+
+.deleteThisMessageAdmin {
+  display: none;
+}
+
+.containerFormProfil {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.containerMembers {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 50%;
+}
+
 .containerMembers .thisMember {
   margin-top: 25px;
 }
@@ -571,4 +621,39 @@ body {
   cursor: pointer;
   margin-right: 5px;
   display: block;
+}
+
+/****************SEARCH PAGE ******************/
+.containerSearch {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-top: 10px;
+}
+
+.ResultatSearch {
+  padding: 3%;
+  color: black;
+  width: 80%;
+  border-radius: 5px;
+  background-color: white;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px #DDD;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.profilUserSearch {
+  height: 100px;
+  width: 100px;
 }

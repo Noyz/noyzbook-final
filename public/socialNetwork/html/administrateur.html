@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Heroic Features - Start Bootstrap Template</title>
+    <title>Le Réseau social Noyzbook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/heroic-features.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/newstylesheet.css">
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="../Asset/jquery.js"></script>
     <script src="../Asset/administrateur.js"></script>
     <script src="../Asset/accueil.js"> </script>
@@ -27,13 +28,11 @@
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://localhost:5000" class="navbar">NoyzBook</a>
+          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="http://localhost:5000/" class="navbar">NoyzBook</a>
         </div>
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbarAdmin">
             <li><a href="#" class="membersShortcut">Gestion des membres</a></li>
-            <li><a href="accueil" class="accueilShortcut">Gestion des messages</a></li>
-            <li><a href="myprofil" class="profilShortcut">Gestion des relations</a></li>
             <li><a href="notifications" class="notificationsShortcut">Statistique</a></li>
           </ul>
         </div>
@@ -44,7 +43,7 @@
         <div class="col-lg-12">
           <h3 style="text-align:center">Vous êtes sur la page administrateur.</h3>
           <div class="connexionAdmin">
-            <form style="display:none" class="formAdmin">
+            <form class="formAdmin">
               <p>utilisateurs
                 <input style="margin-left:25px" type="text" class="usernameAdmin">
               </p>
@@ -57,18 +56,68 @@
         </div>
       </div>
     </div>
+    <div class="containerFormProfil">             
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-xs-12">
+          <div id="updateProfil">
+            <form method="POST" action="/updateProfil" id="updateInformationForm" novalidate="">
+              <fieldset> 
+                <legend>Mettre à jour le profil de l'utilisateur</legend>
+                <div class="form-group">
+                  <label for="nameUpdate">Son nom</label>
+                  <input type="text" name="nameUpdate" placeholder="Ex : Dupont" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="prenomUpdate">Son prénom</label>
+                  <input type="text" name="prenomUpdate" placeholder="Ex : Jean" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="mailUpdate">Son adresse mail</label>
+                  <input type="mail" name="mailUpdate" placeholder="jean.dupont@gmail.com" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="ageUpdate">Son âge</label>
+                  <input type="number" name="ageUpdate" placeholder="25" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="sexe">Son sexe</label>
+                  <select required class="gender form-control">
+                    <option selected>Homme</option>
+                    <option>Femme</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="adressePostal">Son adresse postal</label>
+                  <input type="text" name="adressePostal" placeholder="50 Avenue Montaigne 75008 Paris" class="form-control">
+                </div>
+                <button type="submit" id="updateInfoBtn" value="Mettre à jour" class="btn btn-success">Mettre à jour vos informations</button>
+                <p class="errorUpdate">Les informations de l'utilisateur ont biens étés enregistrés ! </p>
+              </fieldset>
+            </form>
+          </div>
+          <div id="updatePassword">
+            <fieldset> 
+              <legend>Mettre à jour son mot de passe</legend>
+              <form action="/passwordChange" id="updatePasswordForm" method="POST" class="form-group">
+                <div class="form-group">
+                  <label for="currentPassword">Changer son mot de passe (L'utilisateur seras avertis par mail)</label>
+                  <input type="password" name="currentPassword" placeholder="" class="form-control">
+                  <p class="errorField errorFieldCurrentPassword">  </p>
+                  <button type="submit" name="checkedPassword" value="checked password" style="margin-top:10px" class="btn btn-success">Mettre à jour votre mot de passe</button>
+                  <p class="errorUpdatePassword">Le mot de passe à bien été enregistrés !</p>
+                </div>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="containerMembers">
       <div class="row">
         <div class="col-lg-12">
-          <div></div>
+          <div> </div>
         </div>
       </div>
-      <hr>
-      <footer>
-        <div class="row">
-          <div class="col-lg-12"></div>
-        </div>
-      </footer>
     </div>
     <script src="../Asset/bootstrap.min.js"></script>
   </body>

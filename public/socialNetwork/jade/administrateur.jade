@@ -6,10 +6,11 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='description', content='')
     meta(name='author', content='')
-    title Heroic Features - Start Bootstrap Template
+    title Le Réseau social Noyzbook
     link(href='css/bootstrap.min.css', rel='stylesheet')
     link(href='css/heroic-features.css', rel='stylesheet')
     link(rel='stylesheet', href='../../css/newstylesheet.css')
+    script(src='https://cdn.tinymce.com/4/tinymce.min.js')
     script(src='../Asset/jquery.js')
     script(src='../Asset/administrateur.js')
     script(src='../Asset/accueil.js')  
@@ -31,15 +32,11 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar(href='http://localhost:5000') NoyzBook
+          a.navbar(href='http://localhost:5000/') NoyzBook
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav
+          ul.nav.navbar-nav.navbarAdmin
             li
               a.membersShortcut(href="#") Gestion des membres
-            li
-              a.accueilShortcut(href="accueil") Gestion des messages
-            li
-              a.profilShortcut(href="myprofil") Gestion des relations
             li
               a.notificationsShortcut(href="notifications") Statistique
     .container
@@ -47,22 +44,56 @@ html(lang='en')
         .col-lg-12
           h3(style="text-align:center") Vous êtes sur la page administrateur.
           div.connexionAdmin
-            form(style="display:none").formAdmin
+            form.formAdmin
               p utilisateurs
                 input.usernameAdmin(style="margin-left:25px" type="text")
               p Mot de passe
                 input.passwordAdmin(style="margin-left:25px" type="password")
               btn.btnConnectAdmin.btn.btn-success Se connecter en tant qu'admin.
+    .containerFormProfil              
+      .row
+        .col-lg-8.col-md-6.col-xs-12
+            #updateProfil
+              form(method='POST', action='/updateProfil', id="updateInformationForm", novalidate='')
+                fieldset 
+                  legend Mettre à jour le profil de l'utilisateur
+                  .form-group
+                    label(for='nameUpdate') Son nom
+                    input.form-control(type='text', name='nameUpdate', placeholder='Ex : Dupont')
+                  .form-group
+                    label(for='prenomUpdate') Son prénom
+                    input.form-control(type='text', name='prenomUpdate', placeholder='Ex : Jean')
+                  .form-group
+                    label(for='mailUpdate') Son adresse mail
+                    input.form-control(type='mail', name='mailUpdate', placeholder='jean.dupont@gmail.com')
+                  .form-group
+                    label(for='ageUpdate') Son âge
+                    input.form-control(type='number',name="ageUpdate",  placeholder='25')
+                  .form-group
+                    label(for='sexe') Son sexe
+                    select.gender.form-control(required)
+                      option(selected) Homme
+                      option Femme
+                  .form-group
+                    label(for='adressePostal') Son adresse postal
+                    input.form-control(type='text',name="adressePostal",  placeholder='50 Avenue Montaigne 75008 Paris')
+                  button.btn.btn-success(type='submit',id="updateInfoBtn" ,value="Mettre à jour") Mettre à jour vos informations
+                  p.errorUpdate Les informations de l'utilisateur ont biens étés enregistrés ! 
+            #updatePassword
+              fieldset 
+                legend Mettre à jour son mot de passe
+                form.form-group(action="/passwordChange", id="updatePasswordForm", method="POST")
+                  .form-group
+                    label(for='currentPassword') Changer son mot de passe (L'utilisateur seras avertis par mail)
+                    input.form-control(type='password',name="currentPassword", placeholder='')
+                    p.errorField.errorFieldCurrentPassword   
+                    button.btn.btn-success(type="submit", name="checkedPassword" value="checked password",style="margin-top:10px") Mettre à jour votre mot de passe
+                    p.errorUpdatePassword Le mot de passe à bien été enregistrés !
     .containerMembers
       .row
         .col-lg-12
-          div
+          div 
+              
 
 
-
-      hr
-      footer
-        .row
-          .col-lg-12
-           
     script(src='../Asset/bootstrap.min.js')

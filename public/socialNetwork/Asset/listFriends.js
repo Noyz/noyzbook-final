@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 		                	}else{
 		                		$(".selectContact select").append('<option value="'+ obj.dataToKeep[i] +'">'+ obj.dataToKeep[i]+ '</option>' );
-		                		var li = '<li><div class="contenuFriend"><div class="pictureFriend"><img src="'+ obj.picture[i] +'"/></div><div class="nameFriend">' + obj.dataToKeep[i] +'</div><div class="updateFriend"><button class=" btn btn-success accessWallFriend">Accéder à son mur</button><button class=" btn btn-success writingWallFriend">Ecrire sur son mur</button><button class="btn btn-success privateMessageFriend">Envoyé message privée</button><button class=" btn btn-success suggestionFriend">Suggestions</button></div><div class="clearfix"></div><button class="btn btn-danger deleteFriend">Supprimer cet ami</button><div class="clearfix"></div></div></li>';
+		                		var li = '<li><div class="contenuFriend"><div class="pictureFriend"><img src="'+ obj.picture[i] +'"/></div><div class="nameFriend">' + obj.dataToKeep[i] +'</div><div class="updateFriend"><button class=" btn btn-success accessWallFriend">Accéder à son mur</button><button class=" btn btn-success informationFriend">Informations</button><button class="btn btn-success privateMessageFriend">Envoyé message privée</button><button class=" btn btn-info suggestionFriend">Suggestions</button></div><div class="clearfix"></div><button class="btn btn-danger deleteFriend">Supprimer cet ami</button><div class="clearfix"></div></div></li>';
 		                		console.log(typeof that.arrayFriends)
 			        				that.arrayFriends.push(li);
 		                		
@@ -39,7 +39,7 @@ $(document).ready(function(){
 					url:"/loadWallFriend",
 					data: {data:localStorage.getItem('noyzCookie'), name:name_friend},
 					success: function(obj){
-						window.location.href = 'http://localhost:5000/friendWall';
+						window.location.href = 'http://noyzbook.herokuapp.com/friendWall';
 					}
 				});
 			});
@@ -50,7 +50,7 @@ $(document).ready(function(){
 					url:"/writingOnWallFriend",
 					data: {expediteur:localStorage.getItem('noyzCookie'), receveur:name_friend},
 					success: function(obj){
-						window.location.href = 'http://localhost:5000/editionFriendWall';
+						window.location.href = 'http://noyzbook.herokuapp.com/editionFriendWall';
 					}
 				});
 
@@ -62,7 +62,7 @@ $(document).ready(function(){
 					url:"/createPrivateMessage",
 					data: {expediteur:localStorage.getItem('noyzCookie'), receveur:name_friend},
 					success: function(obj){
-						window.location.href = 'http://localhost:5000/privateMessageEditor';
+						window.location.href = 'http://noyzbook.herokuapp.com/privateMessageEditor';
 					}
 				});
 

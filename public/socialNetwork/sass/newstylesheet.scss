@@ -8,6 +8,21 @@ ul{
 body{
 	background-color:#f1f1f1
 }
+
+.rechercheMembers{
+	float:right;
+	color:white;
+	margin-right:10px;
+}
+
+.inputSearch{
+	display:block;
+	color:black;
+}
+
+.inputSearchValid{
+	color:black;
+}
 /****** MAIN PAGE ********/
 .subscriptionMain:hover{
 	cursor:pointer;
@@ -296,7 +311,7 @@ body{
 		float:left;
 		margin-bottom:10px;
 	}
-	.writingWallFriend{
+	.informationFriend{
 		float: right;
 		margin-bottom:10px;
 	}
@@ -447,9 +462,29 @@ body{
 	@include widthContent;
 	text-align:center;
 }
+.thisPublicMessage{
+	@include widthContent;
+}
+
+.editThisMessageAdmin{
+	display:none;
+}
+.deleteThisMessageAdmin{
+	display:none;
+}
+
+.navbarAdmin{
+	// display:none;
+}
+.containerFormProfil{
+	@include widthContent;
+	// display:none;
+}
 
 .containerMembers{
 	@include widthContent;
+	// display:none;
+	width:50%;
 		.thisMember{
 			margin-top:25px;
 		}
@@ -460,6 +495,22 @@ body{
 			display:block;
 		}
 	}
+}
+
+/****************SEARCH PAGE ******************/
+.containerSearch{
+	@include widthContent;
+	margin-top:10px;
+}
+
+.ResultatSearch{
+	@include widthContent;
+	margin-top:10px;
+	width:50%
+}
+.profilUserSearch{
+	height:100px;
+	width:100px;
 }
 
 

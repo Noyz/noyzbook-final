@@ -43,7 +43,7 @@ $(document).ready(function(){
 					data:user,
 					url:"/sendMessage",
 					success: function(data){
-						window.location.href = 'http://localhost:5000/accueil';
+						window.location.href = 'http://noyzbook.herokuapp.com/accueil';
 					}
 				});
 			});
@@ -73,7 +73,7 @@ $(document).ready(function(){
 							data:user,
 							url:"/loadWallFriend",
 							success: function(data){
-								window.location.href = 'http://localhost:5000/friendWall';
+								window.location.href = 'http://noyzbook.herokuapp.com/friendWall';
 							}
 						})
 					}

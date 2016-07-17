@@ -47,9 +47,22 @@
         </div>
       </nav>
     </div>
-    <div class="selectContact">
-      <select class="form-control"></select>
+    <div class="containerSearch">
+      <form class="formSearch">
+        <p>Par nom : 
+          <input id="nameSearch" type="text" name="searchName" class="form-control">
+        </p>
+        <button type="submit" class="btn btn-success searchUserByLastName searchUser">Rechercher par nom      </button>
+        <p>Par prénom : 
+          <input id="prenomSearch" type="text" name="searchFirstName" class="form-control">
+        </p>
+        <button type="submit" class="btn btn-success searchUserByFirstName searchUser">Rechercher prénom</button>
+        <p>Par pseudonyme : 
+          <input id="usernameSearch" type="text" name="searchUsername" class="form-control">
+        </p>
+        <button type="submit" class="btn btn-success searchUserByUsername searchUser">Rechercher pseudo</button>
+      </form>
     </div>
-    <ul class="contenuListFriends"></ul>
+    <div class="ResultatSearch"></div>
   </body>
 </html>

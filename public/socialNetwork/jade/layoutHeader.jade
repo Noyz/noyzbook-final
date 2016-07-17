@@ -23,6 +23,7 @@ html(lang='en')
     script(src='../Asset/edition.js')
     script(src='../Asset/tchat.js')
     script(src='../Asset/administrateur.js')
+    script(src='../Asset/search.js')
     script(type='text/javascript' src="../Asset/newscript.js")
     script(src='../Asset/bootstrap.min.js')
   body
@@ -50,6 +51,8 @@ html(lang='en')
               li
                 a.privateMessagesShortcut(href="privateMessage") Message privée
               li
-                a.tchatShortcut(href="tchat") Tchat 
+                a.tchatShortcut(href="tchat") Tchat
+              li
+                a.searchShortcut(href="search") Recherche d'un membre
     block content
     block footer    

@@ -3,7 +3,7 @@ $(document).ready(function(){
 	/**** Vérification existanse cookie ****/
 		if(location.pathname.length == 1){
 			if(localStorage.getItem('noyzCookie')){
-				window.location.href = 'http://localhost:5000/accueil';
+				window.location.href = 'http://noyzbook.herokuapp.com/accueil';
 			}else{
 				user.pseudo = $('.navbar-brand').text().substr(20);
 			}
@@ -11,7 +11,7 @@ $(document).ready(function(){
 	/**** Gestion Local storage ****/
 	$('.navbar-brand').click(function(){
 		localStorage.removeItem('noyzCookie');
-		window.location.href = 'http://localhost:5000';
+		window.location.href = 'http://noyzbook.herokuapp.com';
 	});
 
 	/*** Page privateMessage ***/
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	           data: user, 
 	           success: function(data)
 		           {
-		               window.location.href = 'http://localhost:5000/accueil';
+		               window.location.href = 'http://noyzbook.herokuapp.com/accueil';
 		           }
 	        });		
 		}
@@ -116,7 +116,7 @@ $(document).ready(function(){
 		           data: user, 
 		           success: function(data)
 		           {
-		             window.location.href = 'http://localhost:5000/accueil';
+		             window.location.href = 'http://noyzbook.herokuapp.com/accueil';
 		           }
 		        });
 		}else{
@@ -234,11 +234,11 @@ $(document).ready(function(){
 				window.privateMessageLibrary.sendPrivateMessage();
 				window.privateMessageLibrary.createPrivateMessage();
 			};
-	/**** PAGE list Friends ****/
+	/**** PAGE Tchat ****/
 	if(/tchat/.test(window.location.pathname)){
 		var objtSession = {};
 		$('.tchatShortcut').css('color', '#5cb85c');
-		var socket = io.connect("http://localhost:5000");
+		var socket = io.connect("http://noyzbook.herokuapp.com");
 
 
 		var myname = $('.navbar-brand').text().substr(20);
@@ -253,6 +253,7 @@ $(document).ready(function(){
 		});	
 		socket.on("displayOnlineContact", function(data){
 			$('.containerOnline li').remove();
+
 			var html = [];
 
 			for(var i = 0; i < data.length;i++){
@@ -261,7 +262,6 @@ $(document).ready(function(){
 			}
 			window.tchatLibrary.getFriendsList(data);
 		});
-		////////////////////////// YOUTUBE /////////////////
 
 		socket.on('notificationInvitation', function(data){
 			$('.chatWith').each(function(x){
@@ -298,7 +298,7 @@ $(document).ready(function(){
 
 
 		socket.on('chatOpen', function(data){
-			$('.interactionChat').append('<button class="showHide btn btn-success">' + data.room +'</button>');
+			$('.interactionChat').append('<button class="showHide btn btn-success" id="'+data.room+'">' + data.room +'</button>');
 			$('#invitationChatStatus').remove();
 			$('.startChat').after('<div class="userChat" id='+ data.room +'><p><span>Vous êtes en</span> discussion avec '+ data.room+'</p><div class="chatScreen"><div class="chatWindow"></div><form class="chatForm"><textarea class="chatBox" style="width:80%"></textarea><button type="submit" class="btn btn-success '+data.room+'">Envoyer</button></form></div></div>');
 			$('.chatForm').submit(function(e){
@@ -308,10 +308,21 @@ $(document).ready(function(){
 			});
 
 		});
+
+		socket.on('sendNameDisconnected', function(data){
+			$('.userChat').each(function(i){
+				var str = $(this).attr('id');
+				var patt = new RegExp(data.nickname);
+				var res = patt.test(str);
+				if(res){
+					$(this).remove();
+					$('button#'+str).remove();
+				}
+			});
+		});
 		socket.on("new message", function(data){
 
 			$('.containerChat .chatWindow').each(function(x){
-				console.log(data)
 				if($(this).closest('.userChat').attr('id') == data.room){
 					if(data.myname == $('.navbar-brand').text().substr(20)){
 						$(this).append('<div class="contentChat"><p>'+ data.myname +' : </p><p>'+ data.data +'</p></div>');
@@ -325,6 +336,14 @@ $(document).ready(function(){
 		
 
 
+	};
+	/*** Page privateMessage ***/
+	if(/search/.test(window.location.pathname)){
+		$('.searchShortcut').css('color', '#5cb85c');
+		window.searchLibrary.searchUser();
+		window.searchLibrary.byLastname();
+		window.searchLibrary.byFirstname();
+		window.searchLibrary.byUsername();
 	};
 
 });

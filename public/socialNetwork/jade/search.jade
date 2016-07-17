@@ -1,0 +1,14 @@
+extends layoutHeader.jade
+block content
+    div.containerSearch
+        form.formSearch
+            p Par nom : 
+                input#nameSearch.form-control(type="text" name="searchName")
+            button.btn.btn-success.searchUserByLastName.searchUser(type="submit") Rechercher par nom      
+            p Par prénom : 
+                input#prenomSearch.form-control(type="text" name="searchFirstName")
+            button.btn.btn-success.searchUserByFirstName.searchUser(type="submit") Rechercher prénom
+            p Par pseudonyme : 
+                input#usernameSearch.form-control(type="text" name="searchUsername")
+            button.btn.btn-success.searchUserByUsername.searchUser(type="submit") Rechercher pseudo
+    div.ResultatSearch
