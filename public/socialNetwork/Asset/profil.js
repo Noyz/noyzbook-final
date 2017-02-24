@@ -54,7 +54,7 @@ $(document).ready(function(){
 					data:{data:localStorage.getItem('noyzCookie')},
 					success: function(data){
 						$('.imgProfil').attr('src', data.profil);
-		 				window.location.href = 'http://localhost:5000/accueil'
+		 				window.location.href = 'http://localhost:3000/accueil'
 		            }
 				});
 			});

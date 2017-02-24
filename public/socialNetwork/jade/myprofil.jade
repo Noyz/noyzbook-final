@@ -2,12 +2,12 @@ extends layoutHeader.jade
 block content
   section
     .container
-        .row
+        .row#updateInfo
           .col-lg-8.col-md-6.col-xs-12
             #updateProfil
               form(method='POST', action='/updateProfil', id="updateInformationForm", novalidate='')
                 fieldset 
-                  legend Mettre à jour votre profil
+                  legend Mettre à jour vos informations
                   .form-group
                     label(for='nameUpdate') Votre nom
                     input.form-control(type='text', name='nameUpdate', placeholder='Ex : Dupont')
@@ -32,7 +32,7 @@ block content
                   p.errorUpdate Vos informations ont biens étés enregistrés ! 
             #updateProfilPicture
               fieldset 
-                legend Mettre à jour votre profil
+                legend Mettre à jour votre image profil
                 img.profilImg(src="img/anonymous.jpg")
                 form.form-group.formImgProfil(action="/upload" method="POST"  enctype="multipart/form-data")
                     input(type="file", name="image", id="urlImg")
@@ -59,6 +59,6 @@ block footer
   footer
     .row
       .col-lg-12
-        p Copyright © noyzbook.herokuapp.com 2016
+        
   script(src='../Asset/bootstrap.min.js')               
                      

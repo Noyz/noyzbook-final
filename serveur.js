@@ -9,7 +9,8 @@ var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
 var store = new MongoDBStore(
       { 
-        uri: 'mongodb://connect_mongodb_session_test:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp',
+        // uri: 'mongodb://connect_mongodb_session_test:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp',
+        uri :"mongodb://localhost:27017/utilisateurs",
         collection: 'utilisateurs'
       });
 var cookieParser = require('cookie-parser');
@@ -276,7 +277,6 @@ app.post('/updatePasswordAdmin', function(req, res){
 });
 
 app.post('/getFriendsListsAdmin', function(req, res){
-	console.log(req.body)
 	var collection = maDb.collection('utilisateurs');
 	collection.find({username:req.body.name}).toArray(function(err, data){
 			if(err){
@@ -707,41 +707,55 @@ app.post('/connectAdmin',function(err,data){
 		});
 	});
 
+	// /******* ListUsers *******/
+	// app.post('/loadList', function(req, res){ // charge la liste de tout les utilisateurs qui sont dans la base de données amis de l'utilisateur
+	// 	var collection = maDb.collection('utilisateurs');
+	// 	collection.find({}).toArray(function(err, data){ 
+	// 		if(err){
+	// 		}else{
+	// 			var tabResult = []; // Tableau contenant le nom tous utilisateurs
+	// 			var allData = data; // On stock les données dans une variable pour refaire appel à data 
+	// 			var obj = {};
+	// 			obj.data = data; //On stock les données dans une propriété d'un autre objet + la liste des utilisateurs à effacer
+	// 			var tabList = [];
+	// 			for(i = 0; i < allData.length;i++){
+	// 				tabResult.push(allData[i].username); 
+	// 			}
+	// 			collection.find({dataCookie:req.body.data}).toArray(function(err, data){
+	// 				if(data[0] != undefined){
+	// 					if(data[0].amis != undefined && data[0] != undefined && data[0].amis != ''){
+	// 						for(var j = 0;j < tabResult.length;j++){
+	// 						 	for(var k = 0;k < data[0].amis.length;k++){ 
+	// 						 		if(data[0].amis[k] != tabResult[j]){
+	// 						 			// console.log('true' + ' ' +  all[j].username)
+	// 								}else{
+	// 									tabList.push(allData[j].username);
+	// 								}
+	// 						 	}
+	// 						}
+	// 					}else{
+	// 						tabList.push(allData);
+	// 					}
+	// 					obj.dataToDelete = tabList;
+	// 					obj.dataOwn = data[0].enattente;
+	// 				res.send(obj);
+	// 				} 
+	// 			});
+	// 		}
+	// 	});
+	// });
+
 	/******* ListUsers *******/
-	app.post('/loadList', function(req, res){ // charge la liste de tout les utilisateurs qui sont dans la base de données amis de l'utilisateur
+	app.post('/loadList', function(req, res){ 
 		var collection = maDb.collection('utilisateurs');
+		var tabList = [];
 		collection.find({}).toArray(function(err, data){ 
-			if(err){
-			}else{
-				var tabResult = []; // Tableau contenant le nom tous utilisateurs
-				var allData = data; // On stock les données dans une variable pour refaire appel à data 
-				var obj = {};
-				obj.data = data; //On stock les données dans une propriété d'un autre objet + la liste des utilisateurs à effacer
-				var tabList = [];
-				for(i = 0; i < allData.length;i++){
-					tabResult.push(allData[i].username); 
+			for(i = 0; i < data.length;i++){
+				if(data[i].dataCookie != req.body.data){
+					tabList.push(data[i]);
 				}
-				collection.find({dataCookie:req.body.data}).toArray(function(err, data){
-					if(data[0] != undefined){
-						if(data[0].amis != undefined && data[0] != undefined && data[0].amis != ''){
-							for(var j = 0;j < tabResult.length;j++){
-							 	for(var k = 0;k < data[0].amis.length;k++){ 
-							 		if(data[0].amis[k] != tabResult[j]){
-							 			// console.log('true' + ' ' +  all[j].username)
-									}else{
-										tabList.push(allData[j].username);
-									}
-							 	}
-							}
-						}else{
-							tabList.push(allData);
-						}
-						obj.dataToDelete = tabList;
-						obj.dataOwn = data[0].enattente;
-					res.send(obj);
-					} 
-				});
 			}
+			res.send(tabList)
 		});
 	});
 
@@ -1297,8 +1311,9 @@ io.on('connection', function(socket){
 //  });
 //  });
 
-var url = "mongodb://utilisateurs:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp";
-var urlAdmin = "mongodb://administrateur:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp" 
+// var url = "mongodb://utilisateurs:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp";
+// var urlAdmin = "mongodb://administrateur:okamiden@ds021694.mlab.com:21694/heroku_m3lqgxnp"
+var url ="mongodb://localhost:27017/utilisateurs"; 
 MongoClient.connect(url, function(err, db) {
   if (err) {
 	res.send('Impossible d\'accéder à votre base de données')

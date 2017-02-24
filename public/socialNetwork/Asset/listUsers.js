@@ -10,16 +10,35 @@ $(document).ready(function(){
 				url:"/loadList",
 				data: {data:localStorage.getItem('noyzCookie')},
 				success: function(obj){
+					// that.myInfo = obj.dataOwn; 
+					// var from = $('.navbar-brand').text().substr(20);
+					// var tabUsers = [];
+					// that.arrayUsers = [];
+					// console.log(obj)
+	    //             	for(var i = 0;i<obj.data.length;i++){
+	    //             		tabUsers.push(obj.data[i].username)
+	    //             	}
+		   //              for(i = 0;i< obj.data.length;i++){
+		   //              	if(obj.data[i].username != from){
+		   //              			var li = '<li><div class="contenuUser"><div class="pictureUser"><img src="'+ obj.data[i].profil +'"/></div><div class="nameUser">' + obj.data[i].username +'</div><div class="updateUser"><button class="btn btn-success addUser">Ajouter</button></div></div></li>'
+		   //          			that.arrayUsers.push(li);
+		   //              	}
+		   //              }
+	    //             that.arrayUsers = that.arrayUsers.join('\n');
+			  //         $('ul.contenuListUsers').append(that.arrayUsers);
+					// that.updateUsers(obj);
+					// that.disabled(obj.data);
+
 					that.myInfo = obj.dataOwn; 
 					var from = $('.navbar-brand').text().substr(20);
 					var tabUsers = [];
 					that.arrayUsers = [];
-	                	for(var i = 0;i<obj.data.length;i++){
-	                		tabUsers.push(obj.data[i].username)
+	                	for(var i = 0;i<obj.length;i++){
+	                		tabUsers.push(obj[i].username)
 	                	}
-		                for(i = 0;i< obj.data.length;i++){
-		                	if(obj.data[i].username != from){
-		                			var li = '<li><div class="contenuUser"><div class="pictureUser"><img src="'+ obj.data[i].profil +'"/></div><div class="nameUser">' + obj.data[i].username +'</div><div class="updateUser"><button class="btn btn-success addUser">Ajouter</button></div></div></li>'
+		                for(i = 0;i< obj.length;i++){
+		                	if(obj[i].username != from){
+		                			var li = '<li><div class="contenuUser"><div class="pictureUser"><img src="'+ obj[i].profil +'"/></div><div class="nameUser">' + obj[i].username +'</div><div class="updateUser"><button class="btn btn-success addUser">Ajouter</button></div></div></li>'
 		            			that.arrayUsers.push(li);
 		                	}
 		                }
@@ -43,12 +62,13 @@ $(document).ready(function(){
 		updateUsers : function(list){
 			var that = this;
 			$('.nameUser').each(function(){
+				console.log(list)
 				that.obj.divers = $(this).text();
-				for(var i = 0;i < list.data.length;i++){
-					if($(this).text() == list.dataToDelete[i]){
-						$(this).closest('li').remove();
-					}
-				}
+				// for(var i = 0;i < list.length;i++){
+				// 	if($(this).text() == list.dataToDelete[i]){
+				// 		$(this).closest('li').remove();
+				// 	}
+				// }
 			});
 			$('.addUser').on('click', function(){
 				that.obj.divers = $(this).closest('div');

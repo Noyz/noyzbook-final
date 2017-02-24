@@ -3,15 +3,15 @@ $(document).ready(function(){
 	/**** Vérification existanse cookie ****/
 		if(location.pathname.length == 1){
 			if(localStorage.getItem('noyzCookie')){
-				window.location.href = 'http://noyzbook.herokuapp.com/accueil';
+				window.location.href = 'http://localhost:3000/accueil';
 			}else{
 				user.pseudo = $('.navbar-brand').text().substr(20);
 			}
 		};
 	/**** Gestion Local storage ****/
-	$('.navbar-brand').click(function(){
+	$('.logoutImg').click(function(){
 		localStorage.removeItem('noyzCookie');
-		window.location.href = 'http://noyzbook.herokuapp.com';
+		window.location.href = 'http://localhost:3000/';
 	});
 
 	/*** Page privateMessage ***/
@@ -46,6 +46,7 @@ $(document).ready(function(){
 		});
 
 		$('#formSub').on('submit', function(event){
+			alert('hit')
 		event.preventDefault();
           $.ajax({
            type: "POST",
@@ -79,7 +80,7 @@ $(document).ready(function(){
 	           data: user, 
 	           success: function(data)
 		           {
-		               window.location.href = 'http://noyzbook.herokuapp.com/accueil';
+		               window.location.href = 'http://localhost:3000/accueil';
 		           }
 	        });		
 		}
@@ -116,7 +117,7 @@ $(document).ready(function(){
 		           data: user, 
 		           success: function(data)
 		           {
-		             window.location.href = 'http://noyzbook.herokuapp.com/accueil';
+		             window.location.href = 'http://localhost:3000/accueil';
 		           }
 		        });
 		}else{
@@ -164,8 +165,8 @@ $(document).ready(function(){
        data: {dataCookie:localStorage.getItem('noyzCookie')}, 
        success: function(obj){
        		if(location.pathname.length != 1 && location.pathname != "/administrateur"){
-				$('.navbar-brand').text($('.navbar-brand').text() + ' ' +  obj[0].username);
-				$('.navbar-brand').after('<img src="'+ obj[0].profil+'"/>')
+				$('.navbar-brand').after('<div class="userInfo"><img src="'+ obj[0].profil+'" class="navImg"/></div>')
+				$('.userInfo').prepend("<a href='#' class='navbar-brand'>" + $('.navbar-brand').text() + ' ' +  obj[0].username + "</a>");
        		}
        }
     });

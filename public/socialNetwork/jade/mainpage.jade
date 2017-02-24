@@ -13,7 +13,7 @@ html(lang='fr')
     script(src='../Asset/jquery.js')
     script(type='text/javascript' src="../Asset/newscript.js")  
   body
-    nav.navbar.navbar-inverse.navbar-fixed-top
+    nav.navbar.navbar-inverse.navbar-fixed-top#navbar_connect
       .container
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
@@ -32,7 +32,7 @@ html(lang='fr')
               a(href='#') Anonyme
     .container
       header.jumbotron.hero-spacer
-        h1 Bienvenue sur le réseau social de Julian NOYON : Noyzbook
+        h1 Bienvenue sur : Noyzbook
         p
           | Vous pouvez vous inscrire ou vous connecter à un compte déjà existant.
         p
@@ -47,21 +47,21 @@ html(lang='fr')
         .col-md-6.col-sm-6.hero-feature
           #subscription
               form#formSub(method='POST', action='/Sub', novalidate='')
-              .form-group
-                label Votre username
-                input.form-control(type='text', name='usernameSub', placeholder='Ex : Dupont')
-              .form-group
-                label(for='mailSub') Votre e-mail
-                input#mailSub.form-control(type='email', name='mailSub')
-              .form-group
-                label(for='passwordSub') Votre mot de passe
-                input#passwordSub.form-control(type='password', name='passwordSub')
-              .form-group
-                label(for='passwordSubConfirm') Confirmer mot de passe
-                input#passwordSubConfirm.form-control(type='password', placeholder='')
-              p.errorSub
+                .form-group
+                  label Votre username
+                  input.form-control(type='text', name='usernameSub', placeholder='Ex : Dupont')
+                .form-group
+                  label(for='mailSub') Votre e-mail
+                  input#mailSub.form-control(type='email', name='mailSub' , placeholder='Ex : jean.dupont@gmail.com')
+                .form-group
+                  label(for='passwordSub') Votre mot de passe
+                  input#passwordSub.form-control(type='password', name='passwordSub')
+                .form-group
+                  label(for='passwordSubConfirm') Confirmer mot de passe
+                  input#passwordSubConfirm.form-control(type='password', placeholder='')
+                p.errorSub
 
-              button.btn.btn-default(type='submit', value="s'inscrire") S'inscrire
+                button.btn.btn-default(type='submit', value="s'inscrire") S'inscrire
         .col-md-6.col-sm-6.hero-feature
           #login
             form#formLog(method='POST', action='/connect', novalidate='')

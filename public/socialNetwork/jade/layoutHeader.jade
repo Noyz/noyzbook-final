@@ -35,24 +35,25 @@ html(lang='en')
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href='#') Se déconnecter de :
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
-            ul.nav.navbar-nav
-              li
-                a.accueilShortcut(href="accueil") Accueil
-              li
-                a.profilShortcut(href="myprofil") Mon profil
-              li
-                a.notificationsShortcut(href="notifications") Notification
-              li
-                a.listUsersShortcut(href="listUsers") Ajouter un utilisateur
-              li
-                a.listFriendsShortcut(href="listFriends") Mes amis  
-              li
-                a.privateMessagesShortcut(href="privateMessage") Message privée
-              li
-                a.tchatShortcut(href="tchat") Tchat
-              li
-                a.searchShortcut(href="search") Recherche d'un membre
+            a.navbar-brand(href='#') 
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse.userNavigation
+              ul.nav.navbar-nav
+                li
+                  a.accueilShortcut(href="accueil") Accueil
+                li
+                  a.profilShortcut(href="myprofil") Mon profil
+                li
+                  a.notificationsShortcut(href="notifications") Notification
+                li
+                  a.listUsersShortcut(href="listUsers") Ajouter un utilisateur
+                li
+                  a.listFriendsShortcut(href="listFriends") Mes amis  
+                li
+                  a.privateMessagesShortcut(href="privateMessage") Message privée
+                li
+                  a.tchatShortcut(href="tchat") Tchat
+                li
+                  a.searchShortcut(href="search") Recherche d'un membre
+             img(src="../img/logout.png" title="Déconnexion" class="logoutImg")     
     block content
     block footer    

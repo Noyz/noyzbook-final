@@ -30,6 +30,19 @@ body {
   cursor: pointer;
 }
 
+.jumbotron p:nth-child(2){
+  display:block;
+}
+
+.jumbotron p:nth-child(3){
+  display:inline-block;
+  margin-right:15px;
+}
+
+.jumbotron p:nth-child(4){
+  display:inline-block;
+}
+
 #subscription {
   border: 1px solid #CCC;
   padding: 15px;
@@ -75,9 +88,40 @@ body {
 }
 
 /**** TOUTES LES PAGES ****/
-.navbar-header img {
+.navImg {
   height: 70px;
   width: auto;
+  margin-bottom:8px;
+  margin-top:8px;
+  border:1px solid #449d44;
+}
+
+.userInfo{
+  display:inline-block;
+}
+
+.userNavigation{
+  display:inline-block !important;
+}
+
+.logoutImg{
+  border: none !important;
+  height: 30px;
+  border-radius: 5px;
+  /* margin-top: 14px; */
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+.logoutImg:hover{
+  cursor:pointer;
+  border:2px solid yellow !important;
+  border-radius:100%;   
+}
+
+.userNavigation a{
+  line-height:1.2 !important;
 }
 
 /**** PAGE PROFIL ****/
@@ -87,6 +131,9 @@ body {
   border: 1px solid black;
   margin-left: 15px;
   display: none;
+}
+#navbar_connect ul a {
+  line-height:2.2;
 }
 
 .edit {
@@ -112,27 +159,41 @@ body {
   width: 75%;
 }
 
+#updateInfo{
+  padding-top:40px;
+  position: relative;
+}
+
 #updateProfil {
   border: 1px solid #ccc;
   padding: 10px;
-}
-
-#updatePassword {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  width: 50%;
 }
 
 #updateProfilPicture {
-  margin-top: 20px;
   border: 1px solid #ccc;
   padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  right: -361px;
 }
+
+#updatePassword {
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
 
 #updateProfilPicture .profilImg {
   height: 100px;
-  width: 100px;
-  margin: 5px;
+  margin: 10px;
   border: 1px solid black;
 }
 
@@ -154,11 +215,10 @@ body {
 
 /**** PAGE ACCUEIL ****/
 .senderImg {
-  height: 70px;
-  width: 70px;
-  border-radius: 100%;
+  height: 50px;
   float: left;
   margin-right: 5px;
+  margin-bottom:10px;
 }
 
 .senderIdentity {
@@ -214,8 +274,12 @@ body {
   display: none;
 }
 
-.newMessageWallEdit button {
-  width: 20px;
+ #mceu_16-body button {
+  width: 60px;
+}
+
+.messages{
+  /*border-top:1px solid #3edb97;*/
 }
 
 /**** PAGE EDITION ****/
@@ -273,6 +337,9 @@ body {
 
 .contenuListUsers li {
   margin-bottom: 3%;
+  display: inline-block;
+  margin:10px;
+
 }
 
 .contenuListUsers li p:hover {
@@ -280,16 +347,14 @@ body {
 }
 
 .contenuListUsers .nameUser {
-  display: inline-block;
-  margin-right: 30px;
+  
 }
 
 .contenuListUsers .contenuUser {
-  width: 40%;
+  width: 225px;
   margin: 0 auto;
   padding: 3%;
   color: black;
-  width: 80%;
   border-radius: 5px;
   background-color: white;
   height: auto;
@@ -301,8 +366,6 @@ body {
 }
 
 .contenuListUsers .pictureUser {
-  display: inline;
-  margin-right: 10px;
 }
 
 .contenuListUsers .pictureUser img {
