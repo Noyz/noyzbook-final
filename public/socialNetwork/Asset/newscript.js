@@ -164,12 +164,22 @@ $(document).ready(function(){
        url: "/fetchName",
        data: {dataCookie:localStorage.getItem('noyzCookie')}, 
        success: function(obj){
+       		var _profil = 0;
+       		if(obj[0].profil != undefined){
+       			_profil = obj[0].profil
+       		}else{
+       			_profil = "img/anonymous.jpg";
+       		}
        		if(location.pathname.length != 1 && location.pathname != "/administrateur"){
-				$('.navbar-brand').after('<div class="userInfo"><img src="'+ obj[0].profil+'" class="navImg"/></div>')
+				$('.navbar-brand').after('<div class="userInfo"><img src="'+ _profil +'" class="navImg"/></div>');
 				$('.userInfo').prepend("<a href='#' class='navbar-brand'>" + $('.navbar-brand').text() + ' ' +  obj[0].username + "</a>");
        		}
        }
     });
+
+    $(".ninja_game").click(function () { 
+    	$("#frame").attr("src", "ninja_game/index.html");
+	});
 
 	/**** PAGE ACCUEIL ****/
 	if(/accueil/.test(window.location.pathname)){

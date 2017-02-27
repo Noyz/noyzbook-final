@@ -38,7 +38,13 @@ $(document).ready(function(){
 	                	}
 		                for(i = 0;i< obj.length;i++){
 		                	if(obj[i].username != from){
-		                			var li = '<li><div class="contenuUser"><div class="pictureUser"><img src="'+ obj[i].profil +'"/></div><div class="nameUser">' + obj[i].username +'</div><div class="updateUser"><button class="btn btn-success addUser">Ajouter</button></div></div></li>'
+		                		var _profil = 0;
+					       		if(obj[i].profil != undefined){
+					       			_profil = obj[i].profil
+					       		}else{
+					       			_profil = "img/anonymous.jpg";
+					       		}
+		                			var li = '<li><div class="contenuUser"><div class="pictureUser"><img src="'+ _profil +'"/></div><div class="nameUser">' + obj[i].username +'</div><div class="updateUser"><button class="btn btn-success addUser">Ajouter</button></div></div></li>'
 		            			that.arrayUsers.push(li);
 		                	}
 		                }

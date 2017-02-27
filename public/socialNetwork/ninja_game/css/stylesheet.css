@@ -1,0 +1,603 @@
+
+@font-face {
+font-family: 'hanalei-regular-webfont';
+src: url('../imgJeu/fonts/hanalei-regular-webfont.eot');
+src: url('../imgJeu/fonts/hanalei-regular-webfont.ttf') format('truetype'),
+     url('../imgJeu/fonts/hanalei-regular-webfont.woff') format('woff'),
+     url('../imgJeu/fonts/hanalei-regular-webfont.eot?#iefix') format('embedded-opentype'),
+     url('../imgJeu/fonts/hanalei-regular-webfont.svg') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Tropicana';
+src: url('../imgJeu/fonts/Tropicana-Plain.eot');
+src: url('../imgJeu/fonts/Tropicana-Plain.ttf') format('truetype'),
+     url('../imgJeu/fonts/TropicanaPlain.woff') format('woff'),
+     url('../imgJeu/fonts/Tropicana-Plain.eot?#iefix') format('embedded-opentype'),
+     url('../imgJeu/fonts/TropicanaPlain.svg') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+
+body {
+	background: url("../imgJeu/tropical.jpg") fixed;
+	background-size:cover;
+	margin:0;
+}
+/**********************************************************************************************************************************
+***********************************************ENTETE******************************************************************************
+***********************************************************************************************************************************/
+header{
+	border:1px solid white;
+	background-image:url('../imgJeu/headerM.jpg');
+	background-position:right bottom;
+	overflow:hidden;
+}
+
+header ul{
+	width:100%;
+	list-style:none;
+}
+
+header ul:first-child{
+	margin-left:10%;
+}
+
+header ul li:first-child div {
+	width:15%;
+}
+
+header ul li:nth-child(2) div {
+	width:15%;
+
+}
+
+header ul li:nth-child(3) div {
+	width:15%;
+}
+
+header ul li:nth-child(4) div {
+	width:15%;
+
+}
+
+#backPanel{
+	float:left;
+}
+
+#backPanel:hover{
+	-webkit-animation : hvr-buzz 0.2s linear infinite;
+	-moz-animation:hvr-buzz 0.2s linear infinite;
+	-ms-animation:hvr-buzz 0.2s linear infinite;
+	animation:hvr-buzz 0.2s linear infinite;
+}
+
+.menu {
+	position: relative;
+	height: 103px;
+	overflow:hidden;
+	font-family:Tropicana;
+	font-size:30px;
+	line-height:5px;
+	float:left;
+	color:#529d04;
+}
+
+
+.menu p {
+	margin-left:10%;
+	margin-top:13%;
+}
+
+#star{
+	height:80px;
+	float:left;
+}
+
+#star:hover{
+	-webkit-animation : spin 1s linear infinite;
+	-moz-animation:spin 1s linear infinite;
+	-ms-animation:spin 1s linear infinite;
+	animation:spin 1s linear infinite;
+}
+
+#heart{
+	padding-top:5px;
+	height:80px;
+	float:left;
+}
+#heart:hover{
+	-webkit-animation : pulse2 1s linear infinite;
+	-moz-animation:pulse2 1s linear infinite;
+	-ms-animation:pulse2 1s linear infinite;
+	animation:pulse2 1s linear infinite;
+}
+#mail {
+	height:100px;
+	float:left;
+}
+
+#controller{
+	height:80px;
+	float:left;
+	
+}
+
+#controller:hover{
+	transform: scale(1.2);
+}
+
+
+
+
+
+
+#toHide{
+	display:none;
+}
+.woodPlank {
+	position:absolute;
+
+}
+
+.lock{
+	position:relative;
+	top:8px;
+	left:80px;
+}
+.lockScreen{
+	position:relative;
+	top:8px;
+	height:30px;
+	width:30px;
+	display:none;
+	float:left;
+}
+
+.controlePanel{
+	position:relative;
+	top:20px;
+	left:9%;
+	height: 35px;
+	width: 180px;
+}
+
+
+#instruction{
+	background-color:rgba(0,0,0, 0.8);
+  	width:auto;
+  	padding:0 10px;
+  	background-opacity:0.5;
+	font-family:Tropicana;
+	color:white;
+	margin:0 auto;
+	margin-top:2%;
+	font-size:40px; 
+   	border:5px solid white;
+   	font-size: 40px;
+	text-align: center;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+#instruction>div:first-child {
+	font-size:80px;
+}
+
+#cadreJeu{
+	position:relative;
+	background: url("../imgJeu/Map1.gif");
+	width: 960px;
+	height: 512px;
+	margin:20px auto;
+	/*top: 40%;
+	left:0;
+	right:0;
+	bottom:0;*/
+	border:5px solid black;
+	overflow: hidden;
+	
+}
+#cadreJeu ul {
+	list-style: none;
+	padding-left:180px;
+}
+
+#pauseButton {
+	position: absolute;
+	left: 900px;
+	top:0px;
+	height: 40px;
+}
+
+#startGame{
+	width: 552px;
+	height: 83px;
+	margin-bottom:80px;
+	position:absolute;
+	left:-600px;
+	top: 65px;
+}
+#playGame{
+	position:absolute;
+	top:200px;
+	width: 187px;
+	height: 87px;
+}
+#playGame:hover{
+	transform:scale(1.2);
+}
+#creditsGame{
+	position:absolute;
+	top:365px;
+	width: 279px;
+	height: 90px;
+}
+#creditsGame:hover{
+	transform:scale(1.2);
+}
+
+#creditsPage {
+	position: absolute;
+	left: -90px;
+	display:none;
+}
+
+#controlesGame {
+	position:absolute;
+	top:265px;
+	left:175px;
+}
+
+#controlesPage {
+	position: absolute;
+	left: 300px;
+	display:none;
+}
+
+#controlesGame:hover{
+	transform:scale(1.2);
+}
+
+#retour {
+	position:absolute;
+	left:15px;
+	top:10px;
+	background-image:url('imgJeu/retour.png');
+	display:none;
+	height:40px;
+	width:160px;
+	z-index:5;
+	cursor: pointer;
+}
+#retour:hover{
+	transform:scale(1.3);
+}
+
+#dead{
+	position:absolute;
+	top:145px;
+	left:150px;
+	display:none;
+}
+
+#retry{
+	position:absolute;
+	top: 455px;
+	display: none;
+	left: 630px;
+	cursor: pointer;
+}
+
+#retry:hover{
+	transform:scale(1.2);
+}
+
+#winner{
+	position:absolute;
+	top: 145px;
+	display: none;
+	left: 80px;
+	cursor:pointer;
+}
+
+#pause{
+	position:absolute;
+	top: 145px;
+	display: none;
+	left: 80px;
+	cursor:pointer;
+}
+
+#magic span{
+	display:none;
+}
+
+#sound {
+	position:relative;
+	top:10px;
+	left:60px;
+}
+/**********************************************************************************************************************************
+***********************************************BODY INDEX******************************************************************************
+***********************************************************************************************************************************/
+
+#monPerso {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:2;
+
+}
+
+#masque {
+	height: 88px;
+	width: 65px;
+	overflow: hidden;
+	/*border:1px solid black;*/
+	position:absolute;
+	left: 150px;
+	z-index:2;
+}
+
+/**********************************************************************************************************************************
+***********************************************BODY MYSELF******************************************************************************
+***********************************************************************************************************************************/
+#drawMe {
+	display:block;
+	margin-left:45%;
+}
+
+#aboutMe {
+	background-color:rgba(0,0,0, 0.5);
+	/*font-family: 'Architects Daughter', cursive;*/
+	font-family:Tropicana;
+	color:white;
+	font-size:40px;
+	width:900px;
+	margin:0 auto;
+	padding:30px;
+	-moz-box-shadow: 0px 0px 5px 3px #656565;
+	-webkit-box-shadow: 0px 0px 5px 3px #656565;
+	-o-box-shadow: 0px 0px 5px 3px #656565;
+	box-shadow: 0px 0px 5px 3px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=5);
+}
+
+.contactIcon{
+	height:150px;
+	width:150px;
+}
+a {
+	color:white;
+}
+
+a:link {
+	
+}
+
+
+
+/**********************************************************************************************************************************
+***********************************************BODY CONTACT************************************************************************
+***********************************************************************************************************************************/
+
+#all {
+	color:white;
+  width:900px;
+ background-color:rgba(0,0,0, 0.5);
+  margin:0 auto ;
+  padding:20px;
+  -moz-box-shadow: 0px 0px 5px 3px #656565;
+	-webkit-box-shadow: 0px 0px 5px 3px #656565;
+	-o-box-shadow: 0px 0px 5px 3px #656565;
+	box-shadow: 0px 0px 5px 3px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=5);
+}
+
+#join h3 {
+color: white;
+text-align:center;
+font-family: 'Architects Daughter', cursive;
+font-size:40px;
+
+}
+
+/**********************************************************************************************************************************
+***********************************************ANIMATION CSS***********************************************************************
+***********************************************************************************************************************************/
+.pulse2 {
+	-webkit-animation: pulse2 1s linear infinite;
+	-moz-animation: pulse2 1s linear infinite;
+	-ms-animation: pulse2 1s linear infinite;
+	animation: pulse2 1s linear infinite;
+}
+
+@keyframes "pulse2" {
+ 0% {
+    -webkit-transform: scale(1.1);
+   	-moz-transform: scale(1.1);
+   	-o-transform: scale(1.1);
+   	-ms-transform: scale(1.1);
+   	transform: scale(1.1);
+ }
+ 50% {
+    -webkit-transform: scale(0.8);
+   	-moz-transform: scale(0.8);
+   	-o-transform: scale(0.8);
+   	-ms-transform: scale(0.8);
+   	transform: scale(0.8);
+ }
+ 100% {
+    -webkit-transform: scale(1);
+   	-moz-transform: scale(1);
+   	-o-transform: scale(1);
+   	-ms-transform: scale(1);
+   	transform: scale(1);
+ }
+
+}
+
+@-moz-keyframes pulse2 {
+ 0% {
+   -moz-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+ 50% {
+   -moz-transform: scale(0.8);
+   transform: scale(0.8);
+ }
+ 100% {
+   -moz-transform: scale(1);
+   transform: scale(1);
+ }
+
+}
+
+@-webkit-keyframes "pulse2" {
+ 0% {
+   -webkit-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+ 50% {
+   -webkit-transform: scale(0.8);
+   transform: scale(0.8);
+ }
+ 100% {
+   -webkit-transform: scale(1);
+   transform: scale(1);
+ }
+
+}
+
+@-ms-keyframes "pulse2" {
+ 0% {
+   -ms-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+ 50% {
+   -ms-transform: scale(0.8);
+   transform: scale(0.8);
+ }
+ 100% {
+   -ms-transform: scale(1);
+   transform: scale(1);
+ }
+
+	}
+
+
+.spin {
+	-webkit-animation: spin 1s linear infinite;
+	-moz-animation: spin2 1s linear infinite;
+	-ms-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@keyframes hvr-buzz {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+.hvr-buzz {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+}
+.hvr-buzz:hover, .hvr-buzz:focus, .hvr-buzz:active {
+  -webkit-animation-name: hvr-buzz;
+  animation-name: hvr-buzz;
+  -webkit-animation-duration: 0.15s;
+  animation-duration: 0.15s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+/**********************************************************************************************************************************
+***********************************************CLEARFIX***********************************************************************
+***********************************************************************************************************************************/
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+*html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+/************************************************************************************************************************************/
+#myCV {
+	background-color:rgba(0,0,0, 0.5);
+	background-position:fixed;
+	/*font-family: 'Architects Daughter', cursive;*/
+	font-family:Verdana;
+	color:white;
+	width:900px;
+	margin:0 auto;
+	padding:30px;
+	-moz-box-shadow: 0px 0px 5px 3px #656565;
+	-webkit-box-shadow: 0px 0px 5px 3px #656565;
+	-o-box-shadow: 0px 0px 5px 3px #656565;
+	box-shadow: 0px 0px 5px 3px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=5);
+}
+
+#myCV h2{
+	font-family:Tropicana;
+}
+
+.helpline ul {
+	list-style:none;
+}
+
+.row2{
+	float:right;
+}
+
+
+@media screen and (max-width: 1174px) {
+  	#instruction{
+  		margin-left:40px;
+  		margin-right:40px;
+  	}
+}
+
+@media screen and (max-width: 1217px) {
+  	
+}
+
+.nav_menu{
+
+}

@@ -124,6 +124,11 @@ body {
   line-height:1.2 !important;
 }
 
+.ninja_game{
+  width:100px;  
+  height:100px;
+}
+
 /**** PAGE PROFIL ****/
 .imgProfil {
   height: auto;
