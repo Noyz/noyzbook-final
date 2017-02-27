@@ -1,5 +1,5 @@
 const http = require('http');
-
+var fs = require('file-system');
 
 /*** VARIABLE ***/
 var express = require('express');
@@ -545,6 +545,7 @@ app.post('/connectAdmin',function(err,data){
 
 	app.post('/loadProfilPicture', function(req, res){
 			var collection = maDb.collection('utilisateurs');
+			console.log(req.body.data)
 			collection.find({dataCookie:req.body.data}).toArray(function(err, data){
 					if(err){
 				}else{
@@ -621,8 +622,6 @@ app.post('/connectAdmin',function(err,data){
 				collection.updateOne({dataCookie:req.body.data}, { $set: { 'amis' : newUser}}, { upsert: true });
 				collection.find({username:req.body.name_user}).toArray(function(err, data){
 					var newUser = treatUsers(data[0].amis, expediteur);
-					console.log(data[0].username)
-					console.log(enattente)
 					for(i in enattente){
 						if(enattente.indexOf(req.body.name_user) != -1){
 							var newTabEnAttente = data[0].enattente.splice(i, 1);
@@ -751,8 +750,17 @@ app.post('/connectAdmin',function(err,data){
 		var tabList = [];
 		collection.find({}).toArray(function(err, data){ 
 			for(i = 0; i < data.length;i++){
+				var test = "/public/socialNetwork/" + data[0].profil;
+				console.log(test)
+				fs.exists(test, function(exists){
+				  console.log(exists);
+				  console.log(data[0].profil)
+				});
+				var _user = data[0].profil;
 				if(data[i].dataCookie != req.body.data){
 					tabList.push(data[i]);
+				}else{
+
 				}
 			}
 			res.send(tabList)

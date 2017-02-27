@@ -8,6 +8,7 @@ ul {
 
 body {
   background-color: #f1f1f1;
+  background: url(../img/sayagata/sayagata.png);
 }
 
 .rechercheMembers {
@@ -30,24 +31,24 @@ body {
   cursor: pointer;
 }
 
-.jumbotron p:nth-child(2){
-  display:block;
+.connexionAll{
+  text-align:center;
 }
 
-.jumbotron p:nth-child(3){
+.connexionAll p{
   display:inline-block;
-  margin-right:15px;
+  margin:0 15px;
 }
 
-.jumbotron p:nth-child(4){
-  display:inline-block;
+.connexionInstruction{
+  text-align:center;
 }
 
 #subscription {
-  border: 1px solid #CCC;
   padding: 15px;
   display: none;
   height: 427px;
+  background-color: #eee;
 }
 
 .loginMain:hover {
@@ -55,10 +56,10 @@ body {
 }
 
 #login {
-  border: 1px solid #CCC;
   padding: 15px;
   display: none;
   height: 427px;
+  background-color: #eee;
 }
 
 .passwordLost {
@@ -94,6 +95,7 @@ body {
   margin-bottom:8px;
   margin-top:8px;
   border:1px solid #449d44;
+  max-width: 120px;
 }
 
 .userInfo{
@@ -138,7 +140,7 @@ body {
   display: none;
 }
 #navbar_connect ul a {
-  line-height:2.2;
+  line-height:2.3;
 }
 
 .edit {
@@ -160,7 +162,7 @@ body {
   border-radius: 5px;
   box-shadow: 4px 4px 6px #DDD;
   margin: 0 auto;
-  margin-top: 5px;
+  margin-top: 15px;
   width: 75%;
 }
 
@@ -170,29 +172,32 @@ body {
 }
 
 #updateProfil {
-  border: 1px solid #ccc;
-  padding: 10px;
+  padding: 30px;
   display: inline-block;
   position: absolute;
   left: 0;
   width: 50%;
+  background-color: white;
+  box-shadow: 4px 4px 6px #DDD;
 }
 
 #updateProfilPicture {
-  border: 1px solid #ccc;
-  padding: 10px;
+  padding: 30px;
   display: inline-block;
   vertical-align: top;
   position: absolute;
-  right: -361px;
+  right: -372px;
+  background-color: white;
+  box-shadow: 4px 4px 6px #DDD;
 }
 
 #updatePassword {
-  border: 1px solid #ccc;
-  padding: 10px;
+  padding: 30px;
   position: absolute;
   right: 0px;
   top: 0px;
+  background-color: white;
+  box-shadow: 4px 4px 6px #DDD;
 }
 
 
@@ -329,15 +334,13 @@ body {
   color: black;
   width: 80%;
   border-radius: 5px;
-  background-color: white;
   height: auto;
   border-radius: 5px;
   box-shadow: 4px 4px 6px #DDD;
   margin: 0 auto;
-  margin-top: 5px;
+  margin-top: 35px;
   box-shadow: none;
   text-align: center;
-  background-color: #f1f1f1;
 }
 
 .contenuListUsers li {

@@ -24,7 +24,7 @@ $(document).ready(function(){
 	           data:{}, 
 	           success: function(data)
 		           {	
-		               console.log(data);
+		               // console.log(data);
 		           }
 	         	});
 		};
@@ -162,7 +162,7 @@ $(document).ready(function(){
 	$.ajax({
        type: "POST",
        url: "/fetchName",
-       data: {dataCookie:localStorage.getItem('noyzCookie')}, 
+       data: {dataCookie:localStorage.getItem('noyzCookie')},
        success: function(obj){
        		var _profil = 0;
        		if(obj[0].profil != undefined){
